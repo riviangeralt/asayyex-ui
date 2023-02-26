@@ -1,0 +1,27 @@
+.button {
+    @apply rounded outline-none text-white shadow transition-all flex items-center justify-center gap-2 
+}
+
+.button_disabled{
+    @apply disabled:cursor-not-allowed disabled:bg-[var(--primary-color-300)] disabled:select-none
+}
+
+.button_sm {
+    @apply px-4 py-1
+}
+
+.button_md {
+    @apply px-6 py-2
+}
+
+.button_lg {
+    @apply px-8 py-3
+}
+
+.button_contained {
+    @apply bg-[var(--primary-color-500)] enabled:hover:bg-[var(--primary-color-700)]
+}
+
+.button_outlined {
+    @apply text-[var(--primary-color-500)] border-[2px] border-[var(--primary-color-500)] hover:bg-[var(--primary-color-700)] hover:border-[var(--primary-color-700)] hover:text-white
+}
