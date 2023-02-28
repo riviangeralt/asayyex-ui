@@ -1,5 +1,5 @@
 .button {
-    @apply rounded outline-none text-white shadow transition-all flex items-center justify-center gap-2 
+    @apply rounded outline-none text-white shadow transition-all flex items-center justify-center gap-2 relative overflow-hidden
 }
 
 .button_disabled{

@@ -1,0 +1,27 @@
+.accordion {
+    @apply bg-white p-3 rounded shadow-none
+}
+
+.accordion_header {
+    @apply flex justify-between cursor-pointer items-center font-bold
+}
+
+.accordion_body {
+    @apply h-0 overflow-hidden transition-all 
+}
+
+.accordion_body__open {
+    @apply min-h-min overflow-visible mt-4 transition-all
+}
+
+.accordion_disabled{
+    @apply bg-slate-200 text-slate-600 cursor-not-allowed
+}
+
+.accordion_disabled .accordion_header{
+    @apply  cursor-not-allowed select-none
+}
+
+.accordion_disabled .accordion_header img{
+    @apply bg-slate-200
+}

@@ -1,0 +1,23 @@
+.chip{
+    @apply inline-block cursor-default shadow rounded-full select-none relative overflow-hidden
+}
+
+.chip_sm{
+    @apply px-2 py-1 text-sm
+}
+
+.chip_md{
+    @apply px-4 py-2
+}
+
+.chip_lg{
+    @apply px-6 py-3 text-lg
+}
+
+.chip_contained{
+    @apply bg-[var(--primary-color-500)] text-white
+}
+
+.chip_outlined{
+    @apply border-[var(--primary-color-500)] border-2 text-[var(--primary-color-500)]
+}
