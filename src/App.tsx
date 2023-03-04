@@ -1,18 +1,17 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import { Accordion, Button, Chip, Spinner } from "./components";
-import componentWithRipple from "./hoc/withRipple";
+import { Accordion, Button, Chip, Modal, Select, Spinner } from "./components";
 
 function App() {
-  const [isLoading, setIsLoading] = useState(false);
-
-  const ButtonWithRipple = componentWithRipple(Button);
-  const ChipWithRipple = componentWithRipple(Chip);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="p-2 bg-slate-300 h-screen">
-      <Button ripple onClick={()=>console.log('asaas')}>Click Me</Button>
-
+    <div className="p-2 h-screen">
+      <Button ripple onClick={() => setIsOpen(!isOpen)} size="sm">
+        Click Me
+      </Button>
+      <Button variant="contained" size="md" isLoading>
+        Aasim Sayyed
+      </Button>
       <Spinner size="lg" width="w-10" height="h-10" borderColor="#f0f0f0" />
 
       <Accordion title="Accordion Header Example">
@@ -26,9 +25,61 @@ function App() {
         with desktop publishing software like Aldus PageMaker including versions
         of Lorem Ipsum.
       </Accordion>
-      <ButtonWithRipple>Aasim</ButtonWithRipple>
-      <ChipWithRipple variant="contained"/>
-      <Chip variant="outlined" />
+      <Chip
+        variant="outlined"
+        title="Aasim Sayyed was here"
+        isClickable
+        onDelete={() => console.log(">>>")}
+        size="lg"
+      />
+      <Modal
+        open={isOpen}
+        onClose={() => setIsOpen(!isOpen)}
+        size="lg"
+        closeOnOverlayClick={true}
+        verticalAlign="center"
+        id="aasim"
+        title="Test Modal"
+      >
+        Test Modal Body
+        <Button ripple size="sm">
+          Aasim Sayyed
+        </Button>
+      </Modal>
+      <hr className="my-5" />
+      <Select
+        options={[
+          {
+            label: "aasim",
+            value: "aasim",
+          },
+          {
+            label: "sayyed",
+            value: "sayyed",
+          },
+          {
+            label: "zahid",
+            value: "zahid",
+          },
+          {
+            label: "aasim",
+            value: "aasim",
+          },
+          {
+            label: "sayyed",
+            value: "sayyed",
+          },
+          {
+            label: "zahid",
+            value: "zahid",
+            newMan:'aasim'
+          },
+        ]}
+        onChange={(ele)=>console.log(ele)}
+        placeholder=""
+        isDisabled
+        size='md'
+      />
     </div>
   );
 }

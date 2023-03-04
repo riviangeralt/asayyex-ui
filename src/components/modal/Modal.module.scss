@@ -1,0 +1,61 @@
+.modal_container {
+    @apply fixed top-0 left-0 w-screen h-screen flex justify-center bg-[#0000009a] z-[999999] transition-all animate-[scale] p-4
+}
+
+.modal {
+    @apply bg-white shadow-sm rounded p-4 backdrop-blur-lg relative
+}
+
+.modal_sm {
+    @apply w-[30%] h-[30%]
+}
+
+.modal_md{
+    @apply w-[50%] h-[50%]
+}
+
+.modal_lg {
+    @apply w-[70%] h-[70%]
+}
+
+.modal_top {
+    @apply items-start
+}
+
+.modal_center {
+    @apply items-center
+}
+
+.modal_bottom {
+    @apply items-end
+}
+
+.modal_close {
+    @apply cursor-pointer
+}
+
+.modal_header{
+    @apply flex justify-between mb-2 items-center
+}
+
+.modal_title{
+    @apply font-bold text-2xl
+}
+
+.modal_body{
+    @apply min-h-[calc(100%-80px)]
+}
+
+.modal_footer{
+    @apply flex justify-end gap-4
+}
+
+@keyframes scale {
+    0% {
+        transform: scale(0);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}

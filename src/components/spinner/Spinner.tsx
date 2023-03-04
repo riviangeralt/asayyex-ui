@@ -1,6 +1,6 @@
 import React from "react";
 import { mergeClassNames } from "src/utils/utils";
-import classes from "./Spinner.module.css";
+import classes from "./Spinner.module.scss";
 
 type SpinnerProps = {
   size?: "sm" | "md" | "lg";

@@ -1,5 +1,5 @@
 import React, { Children, useState } from "react";
-import classes from "./Accordion.module.css";
+import classes from "./Accordion.module.scss";
 import ChevronDown from "../../assets/svg/chevron-down.svg";
 import { mergeClassNames } from "src/utils/utils";
 

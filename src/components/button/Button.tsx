@@ -2,7 +2,7 @@ import React from "react";
 import componentWithRipple from "src/hoc/withRipple";
 import { mergeClassNames } from "src/utils/utils";
 import Spinner from "../spinner/Spinner";
-import classes from "./Button.module.css";
+import classes from "./Button.module.scss";
 
 type ButtonProps = {
   size?: "sm" | "md" | "lg";
