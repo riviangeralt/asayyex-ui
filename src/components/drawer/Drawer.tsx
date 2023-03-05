@@ -1,54 +1,56 @@
 import React, { useEffect } from "react";
 import { createPortal } from "react-dom";
 import { mergeClassNames } from "src/utils/utils";
-import classes from "./Modal.module.scss";
+import classes from "./Drawer.module.scss";
 
-type ModalProps = {
+type DrawerProps = {
   open: boolean;
   onClose: () => void;
   children?: React.ReactNode;
   closeOnOverlayClick?: boolean;
   size?: "sm" | "md" | "lg";
-  verticalAlign?: "top" | "center" | "bottom";
+  position?: "top" | "bottom" | "right" | "left";
   title?: string | React.ReactNode;
   footer?: React.ReactNode;
 };
 
-const defaultModalProps: ModalProps = {
+const defaultDrawerProps: DrawerProps = {
   open: false,
   onClose: () => {},
   children: null,
   closeOnOverlayClick: false,
   size: "md",
-  verticalAlign: "top",
+  position: "right",
   title: null,
   footer: null,
 };
 
-const Modal = (props: ModalProps & React.ComponentProps<"div">) => {
+const Drawer = (props: DrawerProps & React.ComponentProps<"div">) => {
   const {
     open,
     onClose,
     children,
     closeOnOverlayClick,
     size,
-    verticalAlign,
+    position,
     title,
     footer,
     ...rest
   } = props;
 
-  const modalSizes = {
-    sm: classes.modal_sm,
-    md: classes.modal_md,
-    lg: classes.modal_lg,
+  const drawerSizes = {
+    sm: classes.drawer_sm,
+    md: classes.drawer_md,
+    lg: classes.drawer_lg,
   };
 
-  const modalPosition = {
-    top: classes.modal_top,
-    center: classes.modal_center,
-    bottom: classes.modal_bottom,
+  const drawerPosition = {
+    top: classes.drawer_top,
+    bottom: classes.drawer_bottom,
+    left: classes.drawer_left,
+    right: classes.drawer_right,
   };
+
 
   useEffect(() => {
     // Disable background scroll when drawer is open
@@ -69,27 +71,27 @@ const Modal = (props: ModalProps & React.ComponentProps<"div">) => {
         createPortal(
           <div
             className={mergeClassNames(
-              classes.modal_container,
-              modalPosition[verticalAlign || "top"]
+              classes.drawer_container,
+              drawerPosition[position || "right"],
             )}
             onClick={closeOnOverlayClick ? onClose : () => {}}
           >
             <div
               className={mergeClassNames(
-                classes.modal,
-                modalSizes[size || "md"]
+                classes.drawer,
+                drawerSizes[size || "md"]
               )}
               onClick={(event: React.MouseEvent<HTMLDivElement>) =>
                 event.stopPropagation()
               }
               {...rest}
             >
-              <div className={mergeClassNames(classes.modal_header)}>
-                <h3 className={mergeClassNames(classes.modal_title)}>
+              <div className={mergeClassNames(classes.drawer_header)}>
+                <h3 className={mergeClassNames(classes.drawer_title)}>
                   {title}
                 </h3>
                 <span
-                  className={mergeClassNames(classes.modal_close)}
+                  className={mergeClassNames(classes.drawer_close)}
                   onClick={onClose}
                 >
                   <svg
@@ -105,11 +107,11 @@ const Modal = (props: ModalProps & React.ComponentProps<"div">) => {
                   </svg>
                 </span>
               </div>
-              <div className={mergeClassNames(classes.modal_body)}>
+              <div className={mergeClassNames(classes.drawer_body)}>
                 {children}
               </div>
               {footer && (
-                <div className={mergeClassNames(classes.modal_footer)}>
+                <div className={mergeClassNames(classes.drawer_footer)}>
                   {footer}
                 </div>
               )}
@@ -121,6 +123,6 @@ const Modal = (props: ModalProps & React.ComponentProps<"div">) => {
   );
 };
 
-Modal.defaultProps = defaultModalProps;
+Drawer.defaultProps = defaultDrawerProps;
 
-export default Modal;
+export default Drawer;

@@ -1,39 +1,38 @@
+@import '../../styles/mixins.scss';
+
 .chip {
-    @apply cursor-default shadow rounded-full select-none relative overflow-hidden flex w-fit justify-center items-center gap-2
-}
+    @apply cursor-default shadow rounded-full select-none relative overflow-hidden flex w-fit justify-center items-center gap-2 leading-[0] border-2 border-[var(--primary-color-500)];
+    
+    &.chip_sm {
+        @include input-sm
+    }
 
-.chip_sm {
-    @apply px-2 py-1 text-sm
-}
+    &.chip_md {
+        @include input-md
+    }
 
-.chip_md {
-    @apply px-4 py-2
-}
+    &.chip_lg {
+        @include input-lg
+    }
 
-.chip_lg {
-    @apply px-6 py-3 text-lg
-}
+    &.chip_contained {
+        @apply bg-[var(--primary-color-500)] text-white
+    }
 
-.chip_contained {
-    @apply bg-[var(--primary-color-500)] text-white
-}
+    &.chip_outlined {
+        @apply text-[var(--primary-color-500)]
+    }
 
-.chip_outlined {
-    @apply border-[var(--primary-color-500)] border-2 text-[var(--primary-color-500)]
-}
+    .chip_delete {
+        @apply bg-[var(--primary-color-500)] rounded-full z-30
+    }
+    
+    .chip_delete>svg {
+        @apply w-[16px] h-[16px] cursor-pointer text-white
+    }
+    
+    &.chip_clickable {
+        @apply cursor-pointer
+    }
 
-/* .chip_title {
-    @apply 
-} */
-
-.chip_delete {
-    @apply bg-[var(--primary-color-500)] rounded-full z-30
-}
-
-.chip_delete>svg {
-    @apply w-[16px] h-[16px] cursor-pointer text-white
-}
-
-.chip_clickable {
-    @apply cursor-pointer
 }

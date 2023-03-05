@@ -1,23 +1,60 @@
-.spinner {
-    @apply rounded-full border-2 inline-block animate-spin border-t-transparent
-}
+// Spinner.module.scss
 
-.spinner_primary {
-    @apply border-x-[var(--primary-color-500)] border-b-[var(--primary-color-500)]
-}
+.spinner_container {
+    @apply inline-block;
 
-.spinner_white {
-    @apply border-[#ffffff] border-t-transparent
-}
+    .spinner {
+        @apply w-6 h-6 border-4 rounded-full border-t-[#34d399] animate-spin;
 
-.spinner_sm {
-    @apply w-3 h-3
-}
+        &_sm {
+            @apply w-4 h-4 border-2;
+        }
 
-.spinner_md {
-    @apply w-4 h-4
-}
+        &_md {
+            @apply w-6 h-6 border-4;
+        }
 
-.spinner_lg {
-    @apply w-5 h-5
+        &_lg {
+            @apply w-7 h-7 border-4;
+        }
+
+        &_xl{
+            @apply w-12 h-12 border-4;
+        }
+
+        &_2xl{
+            @apply w-16 h-16 border-4;
+        }
+
+        &_3xl{
+            @apply w-20 h-20 border-4;
+        }
+
+        &_primary {
+            @apply border-t-[#6366f1];
+        }
+
+        &_secondary {
+            @apply border-t-[#8B5CF6];
+        }
+
+        &_success {
+            @apply border-t-[#10B981];
+        }
+
+        &_warning {
+            @apply border-t-[#F59E0B];
+        }
+
+        &_danger {
+            @apply border-t-[#EF4444];
+        }
+
+        &_white {
+            @apply border-[var(--primary-color-300)] border-t-white
+        }
+
+    }
+
+
 }

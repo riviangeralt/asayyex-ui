@@ -1,0 +1,92 @@
+.drawer_container {
+    @apply fixed top-0 left-0 w-screen h-screen flex bg-[#0000009a] z-[999999];
+
+    .drawer {
+        @apply bg-white shadow-sm p-4 backdrop-blur-lg relative h-screen flex flex-col gap-2;
+
+        &_sm {
+            @apply w-full sm:w-[70%] md:w-[50%] lg:w-[30%]
+        }
+
+        &_md{
+            @apply w-full sm:w-[70%] md:w-[60%] lg:w-[40%]
+        }
+
+        &_lg {
+            @apply w-full sm:w-[70%] md:w-[60%] lg:w-[50%]
+        }
+
+        .drawer_header{
+            @apply flex justify-between items-center;
+            
+            .drawer_title{
+                @apply font-bold text-2xl
+            }
+
+            .drawer_close {
+                @apply cursor-pointer
+            }
+        }
+
+        .drawer_body{
+            @apply min-h-fit pr-3 overflow-y-scroll scrollbar-thumb-slate-300 scrollbar-thin max-h-[calc(100%-32px-44px)] flex-1
+        }
+        
+        .drawer_footer{
+            @apply flex justify-end gap-4
+        }
+    }
+
+    &.drawer_top {
+        @apply items-start rounded-bl-none rounded-br-none;
+
+        .drawer {
+            @apply w-screen;
+    
+            &.drawer_sm {
+                @apply h-[100%] sm:h-[70%] lg:h-[30%] md:h-[50%]
+            }
+    
+            &.drawer_md{
+                @apply h-[100%] lg:h-[50%] md:h-[60%] sm:h-[70%]
+            }
+    
+            &.drawer_lg {
+                @apply h-[70%]
+            }
+        }
+    }
+    
+    &.drawer_bottom {
+        @apply items-end rounded-tl-none rounded-tr-none;
+
+        .drawer {
+            @apply w-screen;
+    
+            &.drawer_sm {
+                @apply h-[100%] sm:h-[70%] lg:h-[30%] md:h-[50%]
+            }
+    
+            &.drawer_md{
+                @apply h-[100%] lg:h-[50%] md:h-[60%] sm:h-[70%]
+            }
+    
+            &.drawer_lg {
+                @apply h-[70%]
+            }
+        }
+    }
+    
+    &.drawer_left{
+        @apply justify-start rounded-tr-none rounded-br-none;
+    }
+    
+    &.drawer_right{
+        @apply justify-end rounded-bl-none rounded-tl-none
+    }
+}
+
+
+
+
+

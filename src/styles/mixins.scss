@@ -1,0 +1,11 @@
+@mixin input-sm {
+    @apply px-2.5 py-1.5 text-sm;
+}
+
+@mixin input-md {
+    @apply px-4 py-2;
+}
+
+@mixin input-lg {
+    @apply px-6 py-3 text-lg;
+}

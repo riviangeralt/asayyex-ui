@@ -1,44 +1,88 @@
-// .select{
-//     @apply     
-// }
+@import '../../styles/mixins.scss';
 
-.select_container{
-    @apply relative border-2 border-[var(--primary-color-500)] rounded max-w-[300px] outline-none text-left bg-white flex items-center
-}
+.select_container {
+    @apply relative border-2 border-[var(--primary-color-500)] rounded max-w-[300px] outline-none text-left bg-white flex items-center;
+  
+    &.select_disabled {
+      @apply border-[var(--primary-color-300)] bg-[var(--primary-color-100)] cursor-not-allowed;
+    }
 
+    &.select_error{
+      @apply border-red-500;
+    }
+  
+    .select_start {
+      @apply w-[30px] flex items-center justify-center absolute;
+    }
+  
+    .select_end {
+      @apply flex items-center justify-center absolute right-[5px] cursor-pointer;
+    }
 
-.select_disabled{
-    @apply border-slate-400 bg-slate-200 cursor-not-allowed
-}
+    .select_start, .select_end{
+      .select_icon{
+        @apply w-[24px] h-[24px];
 
-.select_sm{
-    @apply px-[10px] py-1 text-sm
-}
+        &__disabled{
+          @apply cursor-not-allowed text-slate-500
+        }
+      }
+    }
 
-.select_md{
-    @apply px-3.5 py-2 outline-none ml-4 w-full 
-}
+    .select_main {
+      @apply w-[80%];
 
-.select_lg{
-    @apply px-[16px] py-3 text-lg
-}
+      .select{
+        @apply outline-none ml-4 w-full cursor-default disabled:cursor-not-allowed disabled:bg-[var(--primary-color-100)];
 
-.select_start{
-    @apply w-[30px] flex items-center justify-center absolute
-}
+        &_sm {
+          @include input-sm;
+        }
+      
+        &_md {
+          @include input-md;
+        }
+      
+        &_lg {
+          @include input-lg;
+        }
+      }
+    }
+  }
+  
+  .options_list {
+    @apply absolute z-10 mt-1 w-full max-h-56 overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm scrollbar-thumb-slate-300 scrollbar-thin;
 
-.select_end{
-    @apply flex items-center justify-center absolute right-[5px] cursor-pointer
-}
+    .option {
+      @apply text-gray-900 relative select-none cursor-pointer transition-all hover:bg-[var(--primary-color-500)] hover:text-white;
 
-.select_main{
-    @apply w-[80%] 
-}
+      &_sm{
+        @apply py-1 pl-2 pr-7
+      }
 
-.options_list{
-    @apply absolute z-10 mt-1 w-[300px] max-h-56 overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm scrollbar-thumb-slate-300 scrollbar-thin 
-}
+      &_md{
+        @apply py-2 pl-3 pr-9
+      }
 
-.option{
-    @apply text-gray-900 relative select-none py-2 pl-3 pr-9 cursor-pointer transition-all hover:bg-[var(--primary-color-500)] hover:text-white
-}
+      &_lg{
+        @apply py-2 pl-4 pr-11
+
+      }
+
+      &_label{
+        @apply flex items-center;
+
+        &__truncate{
+          @apply font-normal ml-3 block truncate
+        }
+      }
+
+      &_selected{
+       @apply text-[var(--primary-color-500)] absolute inset-y-0 right-0 flex items-center pr-4 group-hover:text-white
+      }
+
+      &_disabled{
+        @apply bg-[var(--primary-color-100)] text-[var(--primary-color-300)] cursor-not-allowed hover:bg-[var(--primary-color-100)] hover:text-[var(--primary-color-300)]
+      }
+    }
+  }

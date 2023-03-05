@@ -14,7 +14,7 @@ function componentWithRipple<T>(Component: React.ComponentType<T>) {
 
       circle.style.width = circle.style.height = `${diameter}px`;
       const rect = element?.getBoundingClientRect(); // because we are opening the modal using createPortal and inside another div we need to pass the co-ordinates of that div or else the ripple effect will not work
-      const modal = document.querySelector("#portals") as HTMLElement;
+      const modal = document.querySelector("#rtc-portal") as HTMLElement;
       circle.style.left = `${
         event.clientX - (rect.left + radius) - (modal ? modal?.offsetLeft : 0)
       }px`;
@@ -41,7 +41,7 @@ function componentWithRipple<T>(Component: React.ComponentType<T>) {
       createRipple(event);
     };
 
-    return <Component {...(props as T)} onClick={handleClick} />;
+    return <Component {...(props as T)} onClick={handleClick}/>;
   };
 }
 

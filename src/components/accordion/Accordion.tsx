@@ -1,7 +1,6 @@
-import React, { Children, useState } from "react";
-import classes from "./Accordion.module.scss";
-import ChevronDown from "../../assets/svg/chevron-down.svg";
+import React, { useState } from "react";
 import { mergeClassNames } from "src/utils/utils";
+import classes from "./Accordion.module.scss";
 
 type AccordionProps = {
   isOpen?: boolean;

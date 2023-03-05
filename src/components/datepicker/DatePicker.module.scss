@@ -1,38 +1,24 @@
 @import '../../styles/mixins.scss';
 
-.textfield_container {
-    @apply relative border-2 border-[var(--primary-color-500)] rounded max-w-[300px] outline-none text-left bg-white flex items-center;
+.datepicker_container {
+    @apply relative border-2 border-[var(--primary-color-500)] rounded max-w-[300px] outline-none text-left bg-white flex items-center pr-6;
   
-    &.textfield_disabled {
+    &.datepicker_disabled {
       @apply border-[var(--primary-color-300)] bg-[var(--primary-color-100)] cursor-not-allowed;
     }
 
-    &.textfield_error{
+    &.datepicker_error{
       @apply border-red-500;
-    }
-
-    &.textfield_start__space{
-        @apply pl-6
-    }
+    }  
   
-    &.textfield_end__space{
-        @apply pr-6
-    }
-  
-
-    .textfield_start {
-      @apply flex items-center justify-center left-2;
-    }
-  
-    .textfield_end {
+    .datepicker_end {
       @apply flex items-center justify-center right-2;
     }
 
-        .textfield_start,
-        .textfield_end {
+        .datepicker_end {
             @apply absolute;
     
-            .textfield_icon {
+            .datepicker_icon {
                 @apply w-[1.5rem] h-[1.5rem];
     
                 &__disabled {
@@ -41,11 +27,11 @@
             }
         }
 
-    .textfield_main {
+    .datepicker_main {
       @apply min-w-0 w-full;
 
-      .textfield{
-        @apply outline-none w-full cursor-text disabled:cursor-not-allowed disabled:bg-[var(--primary-color-100)];
+      .datepicker{
+        @apply outline-none w-full select-none cursor-default disabled:cursor-not-allowed disabled:bg-[var(--primary-color-100)] disabled:select-none;
 
         &_sm {
           @include input-sm;

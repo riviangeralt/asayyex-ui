@@ -46,24 +46,16 @@ const Button = (props: ButtonProps & React.ComponentProps<"button">) => {
   if (ripple) {
     const RippleButton = componentWithRipple(Button);
     return (
-      <RippleButton
-        {...rest}
-        disabled={isDisabled || isLoading}
-        className={buttonClassNames}
-      >
-        {isLoading && <Spinner variant="white" size={rest.size} />}
+      <RippleButton {...rest} isDisabled={isDisabled || isLoading} variant={variant} className={buttonClassNames}>
+        {isLoading && <Spinner color="white" size={rest.size} />}
         {children}
       </RippleButton>
     );
   }
 
   return (
-    <button
-      {...rest}
-      disabled={isDisabled || isLoading}
-      className={buttonClassNames}
-    >
-      {isLoading && <Spinner variant="white" size={rest.size} />}
+    <button {...rest} disabled={isDisabled || isLoading} className={buttonClassNames}>
+      {isLoading && <Spinner color="white" size={rest.size} />}
       {children}
     </button>
   );

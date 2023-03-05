@@ -5,3 +5,6 @@ export { default as Chip } from "./chip/Chip";
 export { default as Modal } from "./modal/Modal";
 export { default as Switch } from "./switch/Switch";
 export { default as Select } from "./select/Select";
+export { default as Drawer } from "./drawer/Drawer";
+export { default as TextField } from "./textfield/TextField";
+export { default as DatePicker } from './datepicker/DatePicker'
