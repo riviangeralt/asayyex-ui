@@ -1,9 +1,16 @@
-import React from 'react'
+import React, { Children } from 'react'
 
+import { BreadcrumbProps } from './Breadcrumb.type'
 
-const Breadcrumb = () => {
+const Breadcrumb = (props: BreadcrumbProps & React.ComponentProps<'div'>) => {
+  const { children } = props
+  const breadcrumbChildren = children && Children.toArray(children)
   return (
-    <div>Breadcrumb</div>
+    <div>
+      {Children.map(breadcrumbChildren, (child, index) => {
+        const isLast = Array.isArray(breadcrumbChildren) && index === breadcrumbChildren?.length - 1
+      })}
+    </div>
   )
 }
 

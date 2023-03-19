@@ -1,0 +1,88 @@
+.switch {
+    @apply relative rounded-full cursor-pointer;
+
+    &_ball {
+        @apply bg-[var(--primary-color-500)] w-[22px] h-[22px] rounded-full inline-block transition-all absolute z-30 top-[50%] translate-y-[-50%];
+    }
+
+    &_contained {
+        @apply bg-slate-200 border-2 relative
+    }
+
+    &_outlined {
+        @apply border-2 border-[var(--primary-color-500)] relative
+    }
+
+    &_disabled {
+        @apply cursor-not-allowed;
+
+        .switch_ball {
+            @apply bg-[var(--primary-color-300)]
+        }
+
+        &.switch_outlined {
+            @apply border-[var(--primary-color-300)]
+        }
+
+    }
+
+    &_error{
+        @apply border-red-500;
+
+        .switch_ball{
+            @apply bg-red-500
+        }
+    }
+
+    &_sm {
+        @apply w-[40px] h-[25px] p-[2px];
+
+        .switch_ball {
+            @apply w-[15px] h-[15px];
+
+            &.switch_ball__left {
+                @apply left-[4px] translate-x-[0%]
+            }
+
+            &.switch_ball__right {
+                @apply translate-x-[100%]
+            }
+        }
+    }
+
+    &_md {
+        @apply w-[51px] h-[30px];
+
+        .switch_ball {
+            @apply w-[22px] h-[22px];
+
+            &.switch_ball__left {
+                @apply left-[4px] translate-x-[0%]
+            }
+
+            &.switch_ball__right {
+                @apply translate-x-[100%]
+            }
+        }
+    }
+
+    &_lg {
+        @apply w-[65px] h-[35px];
+
+        .switch_ball {
+            @apply w-[24px] h-[24px];
+
+            &.switch_ball__left {
+                @apply left-[4px] translate-x-[0%]
+            }
+
+            &.switch_ball__right {
+                @apply translate-x-[140%]
+            }
+        }
+    }
+
+    .switch_input {
+        @apply w-full h-full z-[31] absolute left-0 top-[50%] translate-y-[-50%] opacity-0 cursor-pointer disabled:cursor-not-allowed;
+    }
+}

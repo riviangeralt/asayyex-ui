@@ -1,0 +1,49 @@
+.checkbox_container {
+    @apply flex gap-2 items-center;
+
+    .checkbox_label {
+        @apply cursor-pointer select-none leading-[1];
+    }
+
+    .checkbox {
+        @apply border-2 border-slate-400 cursor-pointer rounded relative flex items-center justify-center;
+
+        input {
+            @apply w-full h-full absolute top-0 left-0 opacity-0 cursor-pointer disabled:cursor-not-allowed;
+        }
+
+        &_sm {
+            @apply w-4 h-4
+        }
+
+        &_md {
+            @apply w-5 h-5
+        }
+
+        &_lg {
+            @apply w-8 h-8
+        }
+
+        &_checked {
+            @apply bg-[var(--primary-color-500)] border-[var(--primary-color-500)];
+
+            &>svg {
+                @apply w-full h-full;
+            }
+
+            &.checkbox_disabled {
+                @apply bg-[var(--primary-color-300)]
+            }
+        }
+
+        &_disabled {
+            @apply border-[var(--primary-color-300)] cursor-not-allowed;
+        }
+
+        &_error {
+            @apply border-red-500;
+        }
+    }
+
+
+}

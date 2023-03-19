@@ -1,50 +1,121 @@
 @import '../../styles/mixins.scss';
 
 .datepicker_container {
-    @apply relative border-2 border-[var(--primary-color-500)] rounded max-w-[300px] outline-none text-left bg-white flex items-center pr-6;
-  
-    &.datepicker_disabled {
-      @apply border-[var(--primary-color-300)] bg-[var(--primary-color-100)] cursor-not-allowed;
+  @apply relative border-2 border-slate-400 rounded max-w-[300px] outline-none text-left bg-white flex items-center pr-6 focus-within:border-[var(--primary-color-500)];
+
+  &.datepicker_disabled {
+    @apply border-[var(--primary-color-300)] bg-[var(--primary-color-100)] cursor-not-allowed;
+  }
+
+  &.datepicker_error {
+    @apply border-red-500;
+  }
+
+  .datepicker_end {
+    @apply flex items-center justify-center right-2;
+  }
+
+  .datepicker_end {
+    @apply absolute;
+
+    .datepicker_icon {
+      @apply w-[1.5rem] h-[1.5rem];
+
+      &__disabled {
+        @apply cursor-not-allowed text-slate-500
+      }
+    }
+  }
+
+  .datepicker_main {
+    @apply min-w-0 w-full;
+
+    .datepicker_input{
+      @apply hidden;
     }
 
-    &.datepicker_error{
-      @apply border-red-500;
-    }  
-  
-    .datepicker_end {
-      @apply flex items-center justify-center right-2;
+    .datepicker {
+      @apply outline-none w-full select-none cursor-default;
+
+      &_sm {
+        @include input-sm;
+      }
+
+      &_md {
+        @include input-md;
+      }
+
+      &_lg {
+        @include input-lg;
+      }
+
+      &_disabled{
+        @apply cursor-not-allowed bg-[var(--primary-color-100)] select-none text-gray-500
+      }
+    }
+  }
+}
+
+.datepicker_calendar {
+  @apply absolute z-10 top-10 mt-1 w-[300px] max-h-fit overflow-auto rounded-md bg-white p-3 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm scrollbar-thumb-slate-300 scrollbar-thin;
+
+  &__header{
+    @apply flex justify-between items-center;
+
+    &__cm{
+      @apply font-bold flex items-center;
     }
 
-        .datepicker_end {
-            @apply absolute;
-    
-            .datepicker_icon {
-                @apply w-[1.5rem] h-[1.5rem];
-    
-                &__disabled {
-                    @apply cursor-not-allowed text-slate-500
-                }
-            }
-        }
+    &__action{
+      @apply p-[0.1rem] outline-none border-2 border-[var(--primary-color-500)] rounded disabled:border-slate-300 disabled:text-slate-500 disabled:cursor-not-allowed;
+    }
 
-    .datepicker_main {
-      @apply min-w-0 w-full;
+    &__ca{
+      @apply cursor-pointer;
+    }
+  }
 
-      .datepicker{
-        @apply outline-none w-full select-none cursor-default disabled:cursor-not-allowed disabled:bg-[var(--primary-color-100)] disabled:select-none;
+  &__container{
+    @apply flex;
 
-        &_sm {
-          @include input-sm;
-        }
-      
-        &_md {
-          @include input-md;
-        }
-      
-        &_lg {
-          @include input-lg;
+    &_days{
+      @apply w-[calc(100%/7)] text-center p-2 cursor-default select-none;
+
+      &_holiday{
+        @apply text-red-500;
+      }
+    }
+
+    &_dates{
+     @apply w-[calc(100%/7)] text-center relative select-none cursor-pointer transition-all hover:text-white p-2;
+
+     &_hover{
+      @apply hover:bg-[var(--primary-color-500)];
+     }
+
+     &_holiday{
+      @apply text-red-500 hover:bg-red-500;
+     }
+
+     &_highlight{
+      @apply bg-[var(--primary-color-500)] text-white;
+     }
+    }
+  }
+
+  &__years{
+    @apply flex max-h-[252px] overflow-y-scroll mt-2 flex-wrap scrollbar-thin;
+
+    &_row{
+      @apply flex w-full;
+
+      &_col{
+        @apply flex-[1] text-center select-none cursor-pointer transition-all hover:text-white hover:bg-[var(--primary-color-500)] p-2;
+
+        &__selected{
+          @apply bg-[var(--primary-color-500)] text-white;
         }
       }
     }
   }
-  
+}

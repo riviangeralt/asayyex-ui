@@ -1,0 +1,77 @@
+@import '../../styles/mixins.scss';
+
+.timepicker_container {
+  @apply relative border-2 border-slate-400 rounded max-w-[300px] outline-none text-left bg-white flex items-center pr-6 focus-within:border-[var(--primary-color-500)];
+
+  &.timepicker_disabled {
+    @apply border-[var(--primary-color-300)] bg-[var(--primary-color-100)] cursor-not-allowed;
+  }
+
+  &.timepicker_error {
+    @apply border-red-500;
+  }
+
+  .timepicker_end {
+    @apply flex items-center justify-center right-2;
+  }
+
+  .timepicker_end {
+    @apply absolute;
+
+    .timepicker_icon {
+      @apply w-[1.5rem] h-[1.5rem];
+
+      &__disabled {
+        @apply cursor-not-allowed text-slate-500
+      }
+    }
+  }
+
+  .timepicker_main {
+    @apply min-w-0 w-full;
+
+    .timepicker_input{
+      @apply hidden;
+    }
+
+    .timepicker {
+      @apply outline-none w-full select-none cursor-default;
+
+      &_sm {
+        @include input-sm;
+      }
+
+      &_md {
+        @include input-md;
+      }
+
+      &_lg {
+        @include input-lg;
+      }
+
+      &_disabled{
+        @apply cursor-not-allowed bg-[var(--primary-color-100)] select-none text-gray-500
+      }
+    }
+  }
+}
+
+.timepicker_option {
+  @apply absolute z-10 top-10 mt-1 w-[300px] max-h-fit overflow-auto rounded-md bg-white p-3 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm scrollbar-thumb-slate-300 scrollbar-thin;
+
+  &__header{
+    @apply flex justify-center items-center text-xl font-bold gap-2 select-none;
+
+    &_hour, &_minute, &_format{
+        @apply flex flex-col items-center;
+
+        span{
+            @apply cursor-pointer;
+        }
+    }
+  }
+
+  &__footer{
+    @apply flex justify-center gap-4 mt-4;
+  }
+}

@@ -20,23 +20,35 @@
     }
 
     &_contained {
-        @apply bg-[var(--primary-color-500)] enabled:hover:bg-[var(--primary-color-700)] border-[2px] border-[var(--primary-color-500)] enabled:hover:border-[var(--primary-color-700)]
+        @apply bg-[var(--primary-color-500)] enabled:hover:bg-[var(--primary-color-700)] border-[2px] border-[var(--primary-color-500)] enabled:hover:border-[var(--primary-color-700)] #{!important};
     }
     
     &_outlined {
-        @apply text-[var(--primary-color-500)] border-[2px] border-[var(--primary-color-500)] enabled:hover:bg-[var(--primary-color-700)] enabled:hover:border-[var(--primary-color-700)] enabled:hover:text-white;
+        @apply text-[var(--primary-color-500)] border-[2px] border-[var(--primary-color-500)] enabled:hover:bg-[var(--primary-color-700)] enabled:hover:border-[var(--primary-color-700)] enabled:hover:text-white #{!important};
 
         &.button_disabled{
-            @apply disabled:bg-[var(--primary-color-100)]
+            @apply disabled:bg-[var(--primary-color-100)] #{!important};
         }
     }
 
     &_link{
-        @apply shadow-none text-[var(--primary-color-500)] underline;
+        @apply shadow-none text-[var(--primary-color-500)] underline #{!important};
 
         &.button_disabled{
-            @apply disabled:text-[var(--primary-color-300)] disabled:bg-transparent
+            @apply disabled:text-[var(--primary-color-300)] disabled:bg-transparent #{!important};
         }
+    }
+
+    &_success{
+        @apply bg-green-500 enabled:hover:bg-green-700 border-[2px] border-green-500 enabled:hover:border-green-700 #{!important};
+    }
+
+    &_danger{
+        @apply bg-red-500 enabled:hover:bg-red-700 border-[2px] border-red-500 enabled:hover:border-red-700 #{!important};
+    }
+
+    &_warning{
+        @apply bg-yellow-500 enabled:hover:bg-yellow-700 border-[2px] border-yellow-500 enabled:hover:border-yellow-700 #{!important};
     }
 }
 

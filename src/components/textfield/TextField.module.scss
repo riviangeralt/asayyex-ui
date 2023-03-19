@@ -1,7 +1,7 @@
 @import '../../styles/mixins.scss';
 
 .textfield_container {
-    @apply relative border-2 border-[var(--primary-color-500)] rounded max-w-[300px] outline-none text-left bg-white flex items-center;
+    @apply relative border-2 border-slate-400 rounded max-w-[300px] outline-none text-left bg-white flex items-center focus-within:border-[var(--primary-color-500)];
   
     &.textfield_disabled {
       @apply border-[var(--primary-color-300)] bg-[var(--primary-color-100)] cursor-not-allowed;
