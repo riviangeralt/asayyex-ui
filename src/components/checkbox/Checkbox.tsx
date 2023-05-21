@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { mergeClassNames } from 'src/utils/utils'
+import { mergeClassNames } from 'src'
 
 import classes from './Checkbox.module.scss'
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { mergeClassNames } from 'src/utils/utils'
+import { mergeClassNames } from 'src'
 
 import classes from './TextField.module.scss'
 

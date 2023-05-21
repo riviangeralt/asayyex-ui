@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { mergeClassNames } from 'src/utils/utils'
+import { mergeClassNames } from 'src'
 
 import classes from './Select.module.scss'
 

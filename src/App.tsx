@@ -101,7 +101,7 @@ function App() {
           placeholder='Select State'
           // size='sm'
         />
-        <Switch name="aasd" size='sm'/>
+        {/* <Switch name="aasd" size='sm'/> */}
         <Checkbox size="md" name="test" />
         <DatePicker
           name="date-pick"
@@ -119,7 +119,7 @@ function App() {
           onTimeChange={(time)=>setSelectedTime(time)}
           placeholder='Select Start Time'
         />
-        <Button variant="contained" ripple>
+        <Button variant="contained" ripple  isLoading>
           Submit
         </Button>
       </form>

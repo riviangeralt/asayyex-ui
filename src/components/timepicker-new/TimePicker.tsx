@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react'
-import { mergeClassNames } from 'src/utils/utils'
+import { mergeClassNames } from 'src'
 
 import classes from './TimePicker.module.scss'
 
@@ -51,7 +51,7 @@ const TimePicker = (props: TimePickerProps & React.ComponentProps<'div'>) => {
     lg: classes.timepicker_main_lg,
   }
 
-  const getFormattedTime = (date: Date) => {
+  const getFormattedTime = (date: Date | undefined) => {
     if (!date) return
     const hourFormat = is24Hours ? 'HH' : 'hh'
     const formatFunctions = {

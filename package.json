@@ -1,14 +1,14 @@
 {
-  "name": "tailwind-components-react",
-  "private": true,
-  "version": "1.0.0",
+  "name": "asayyex-ui",
+  "private": false,
+  "version": "1.0.11",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "lint": "eslint \"**/*.{ts,tsx}\"",
-    "lint:fix": "eslint --fix \"**/*.{ts,tsx}\"",
+    "lint": "eslint \"**/*.{js,jsx,ts,tsx}\"",
+    "lint:fix": "eslint --fix \"**/*.{jsx,ts,tsx}\"",
     "format": "prettier --write src//**/*.{ts,tsx,css} --config ./.prettierrc",
     "prepare": "husky install"
   },
@@ -18,36 +18,66 @@
     }
   },
   "lint-staged": {
-    "**/*.{ts,tsx}": [
-      "npm run lint",
-      "npm run format"
+    "**/*.{js,jsx,ts,tsx}": [
+      "yarn  eslint",
+      "yarn  format"
     ]
   },
-  "dependencies": {
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/asayyex-ui.es.js",
+      "require": "./dist/asayyex-ui.umd.js"
+    },
+    "./dist/style.css": "./dist/style.css"
+  },
+  "main": "./dist/asayyex-ui.umd.js",
+  "module": "./dist/asayyex-ui.es.js",
+  "types": "./dist/index.d.ts",
+  "devDependencies": {
+    "@types/node": "^18.7.6",
+    "@types/react": "^18.0.17",
+    "@types/react-dom": "^18.0.6",
+    "@typescript-eslint/eslint-plugin": "^5.34.0",
+    "@typescript-eslint/parser": "^5.34.0",
+    "@vitejs/plugin-react": "^3.1.0",
+    "eslint": "^8.2.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.30.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "postcss": "^8.4.21",
+    "prettier": "^2.7.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "tailwind-scrollbar": "^3.0.0"
-  },
-  "devDependencies": {
-    "@types/react": "^18.0.28",
-    "@types/react-dom": "^18.0.11",
-    "@typescript-eslint/eslint-plugin": "^5.55.0",
-    "@typescript-eslint/parser": "^5.55.0",
-    "@vitejs/plugin-react": "^3.1.0",
-    "autoprefixer": "^10.4.14",
-    "eslint": "^8.36.0",
-    "eslint-config-prettier": "^8.7.0",
-    "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-react": "^7.32.2",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-simple-import-sort": "^10.0.0",
-    "husky": "^8.0.3",
-    "postcss": "^8.4.21",
-    "prettier": "^2.8.4",
-    "react-hooks": "^1.0.1",
     "sass": "^1.59.3",
-    "tailwindcss": "^3.2.7",
-    "typescript": "^4.9.3",
-    "vite": "^4.2.0"
-  }
+    "typescript": "^4.6.4",
+    "vite": "^4.2.0",
+    "vite-plugin-dts": "^1.4.1",
+    "vite-plugin-libcss": "^1.0.6",
+    "vite-plugin-linter": "^1.2.0",
+    "vite-tsconfig-paths": "^3.5.0"
+  },
+  "peerDependencies": {
+    "react": "16.8.0 || >=17.x",
+    "react-dom": "16.8.0 || >=17.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/riviangeralt/asayyex-ui"
+  },
+  "keywords": [],
+  "author": "Aasim Sayyed",
+  "bugs": {
+    "url": "https://github.com/riviangeralt/asayyex-ui/issues"
+  },
+  "homepage": "https://github.com/riviangeralt/asayyex-ui",
+  "license": "MIT"
 }

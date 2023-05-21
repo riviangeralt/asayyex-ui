@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { mergeClassNames } from 'src/utils/utils'
+import { mergeClassNames } from 'src'
 
 import classes from './DatePicker.module.scss'
 
@@ -66,13 +66,15 @@ const DatePicker = (props: DatePickerProps & React.ComponentProps<'div'>) => {
 
   const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 
-  const getDaysInMonth = (date: Date) => {
+  const getDaysInMonth = (date: Date | undefined) => {
+    if(!date) return
     const year = date?.getFullYear()
     const month = date?.getMonth()
     return new Date(year, month + 1, 0)?.getDate()
   }
 
-  const getFirstDayOfMonth = (date: Date) => {
+  const getFirstDayOfMonth = (date: Date | undefined) => {
+    if(!date) return
     const year = date?.getFullYear()
     const month = date?.getMonth()
     return new Date(year, month, 1).getDay()
@@ -81,13 +83,13 @@ const DatePicker = (props: DatePickerProps & React.ComponentProps<'div'>) => {
   const handlePrevMonthChange = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation()
     const monthSubtracted = monthToDisplay?.setMonth(monthToDisplay?.getMonth() - 1)
-    setMonthToDisplay(new Date(monthSubtracted))
+    setMonthToDisplay(monthSubtracted ? new Date(monthSubtracted) : undefined)
   }
 
   const handleNextMonthChange = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation()
     const monthAdded = monthToDisplay?.setMonth(monthToDisplay?.getMonth() + 1)
-    setMonthToDisplay(new Date(monthAdded))
+    setMonthToDisplay(monthAdded ? new Date(monthAdded): undefined)
   }
 
   const getMonthName = (month: number) => {
@@ -174,7 +176,7 @@ const DatePicker = (props: DatePickerProps & React.ComponentProps<'div'>) => {
       }
     })
     useEffect(() => {
-      document.getElementById(monthToDisplay?.getFullYear()?.toString())?.scrollIntoView()
+      document.getElementById(monthToDisplay ? monthToDisplay?.getFullYear()?.toString() : '')?.scrollIntoView()
     }, [])
 
     return (
@@ -195,7 +197,7 @@ const DatePicker = (props: DatePickerProps & React.ComponentProps<'div'>) => {
                     onClick={(event) => {
                       event.stopPropagation()
                       const yearChanged = monthToDisplay?.setFullYear(year)
-                      setMonthToDisplay(new Date(yearChanged))
+                      setMonthToDisplay(yearChanged? new Date(yearChanged): undefined)
                       setShowYears(false)
                     }}
                   >
@@ -213,10 +215,10 @@ const DatePicker = (props: DatePickerProps & React.ComponentProps<'div'>) => {
   const RenderCalendar = () => {
     const daysInMonth = getDaysInMonth(monthToDisplay)
     const firstDayOfMonth = getFirstDayOfMonth(monthToDisplay)
-    const days: Array<Date | undefined | number> = Array.from({ length: daysInMonth }, (_, i) =>
+    const days: Array<Date | undefined | number> = Array.from({ length: daysInMonth ||0 }, (_, i) =>
       new Date(monthToDisplay as Date).setDate(i + 1),
     )
-    const blanks: Array<undefined> = Array.from({ length: firstDayOfMonth }, (_, i) => undefined)
+    const blanks: Array<undefined> = Array.from({ length: firstDayOfMonth || 0 }, (_, i) => undefined)
     const allDays = [...blanks, ...days]
     const rows: Array<Array<Date | undefined | number>> = []
 
@@ -253,7 +255,7 @@ const DatePicker = (props: DatePickerProps & React.ComponentProps<'div'>) => {
           </button>
           {/* displaying month */}
           <div className={mergeClassNames(classes.datepicker_calendar__header__cm)}>
-            {months[monthToDisplay?.getMonth()]} {monthToDisplay?.getFullYear()}
+            {months[monthToDisplay?.getMonth() || 0]} {monthToDisplay?.getFullYear()}
             <span
               className={mergeClassNames(classes.datepicker_calendar__header__ca)}
               onClick={(event) => {

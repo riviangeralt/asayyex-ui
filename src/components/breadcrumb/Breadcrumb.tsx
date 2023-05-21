@@ -7,9 +7,9 @@ const Breadcrumb = (props: BreadcrumbProps & React.ComponentProps<'div'>) => {
   const breadcrumbChildren = children && Children.toArray(children)
   return (
     <div>
-      {Children.map(breadcrumbChildren, (child, index) => {
+      {/* {Children.map(breadcrumbChildren, (child, index) => {
         const isLast = Array.isArray(breadcrumbChildren) && index === breadcrumbChildren?.length - 1
-      })}
+      })} */}
     </div>
   )
 }
