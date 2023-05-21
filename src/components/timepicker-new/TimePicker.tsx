@@ -41,40 +41,41 @@ const TimePicker = (props: TimePickerProps & React.ComponentProps<'div'>) => {
   } = props
   const [timeToDisplay, setTimeToDisplay] = useState(value ? new Date(value) : new Date())
   const [meridianToDisplay, setMeridianToDisplay] = useState<'AM' | 'PM'>(
-    value ? (value.getHours() > 12 ? 'PM' : 'AM') : 'PM',
+    value ? (value?.getHours() > 12 ? 'PM' : 'AM') : 'PM',
   )
   const [showCalendar, setShowCalendar] = useState(false)
   const timePickerRef = useRef<HTMLDivElement | null>(null)
   const timePickerSizes = {
-    sm: classes.timepicker_sm,
-    md: classes.timepicker_md,
-    lg: classes.timepicker_lg,
+    sm: classes.timepicker_main_sm,
+    md: classes.timepicker_main_md,
+    lg: classes.timepicker_main_lg,
   }
 
   const getFormattedTime = (date: Date) => {
+    if (!date) return
     const hourFormat = is24Hours ? 'HH' : 'hh'
     const formatFunctions = {
       'hh:mm A': () =>
-        `${date.getHours().toString().padStart(2, '0')}:${date
-          .getMinutes()
-          .toString()
+        `${date?.getHours()?.toString().padStart(2, '0')}:${date
+          ?.getMinutes()
+          ?.toString()
           .padStart(2, '0')} ${
-          Number(date.getHours().toString().padStart(2, '0')) >= 12 ? 'PM' : 'AM'
+          Number(date?.getHours()?.toString().padStart(2, '0')) >= 12 ? 'PM' : 'AM'
         }`,
       'HH:mm': () =>
-        `${date.getHours().toString().padStart(2, '0')}:${date
-          .getMinutes()
-          .toString()
+        `${date?.getHours()?.toString().padStart(2, '0')}:${date
+          ?.getMinutes()
+          ?.toString()
           .padStart(2, '0')}`,
       [`${hourFormat}:mm A`]: () =>
-        `${(date.getHours() % 12 || 12).toString().padStart(2, '0')}:${date
-          .getMinutes()
-          .toString()
-          .padStart(2, '0')} ${date.getHours() >= 12 ? 'PM' : 'AM'}`,
+        `${(date?.getHours() % 12 || 12)?.toString().padStart(2, '0')}:${date
+          ?.getMinutes()
+          ?.toString()
+          .padStart(2, '0')} ${date?.getHours() >= 12 ? 'PM' : 'AM'}`,
       [`${hourFormat}:mm`]: () =>
-        `${(date.getHours() % 12 || 12).toString().padStart(2, '0')}:${date
-          .getMinutes()
-          .toString()
+        `${(date?.getHours() % 12 || 12)?.toString().padStart(2, '0')}:${date
+          ?.getMinutes()
+          ?.toString()
           .padStart(2, '0')}`,
     }
 
@@ -95,15 +96,17 @@ const TimePicker = (props: TimePickerProps & React.ComponentProps<'div'>) => {
     event.stopPropagation()
     switch (type) {
       case 'add': {
-        const addedHour = hour.setHours(hour.getHours() + 1)
+        const addedHour = hour.setHours(hour?.getHours() + 1)
         setTimeToDisplay(new Date(addedHour))
-        setMeridianToDisplay(hour.getHours() >= 12 ? 'PM' : 'AM')
+        setMeridianToDisplay(hour?.getHours() >= 12 ? 'PM' : 'AM')
+        onSelectTime(new Date(addedHour))
         break
       }
       case 'subtract': {
-        const subtractedHour = hour.setHours(hour.getHours() - 1)
+        const subtractedHour = hour.setHours(hour?.getHours() - 1)
         setTimeToDisplay(new Date(subtractedHour))
-        setMeridianToDisplay(hour.getHours() >= 12 ? 'PM' : 'AM')
+        setMeridianToDisplay(hour?.getHours() >= 12 ? 'PM' : 'AM')
+        onSelectTime(new Date(subtractedHour))
         break
       }
       default:
@@ -119,15 +122,17 @@ const TimePicker = (props: TimePickerProps & React.ComponentProps<'div'>) => {
     event.stopPropagation()
     switch (type) {
       case 'add': {
-        const addedMinute = minute.setMinutes(minute.getMinutes() + 1)
+        const addedMinute = minute.setMinutes(minute?.getMinutes() + 1)
         setTimeToDisplay(new Date(addedMinute))
-        setMeridianToDisplay(timeToDisplay.getHours() >= 12 ? 'PM' : 'AM')
+        setMeridianToDisplay(timeToDisplay?.getHours() >= 12 ? 'PM' : 'AM')
+        onSelectTime(new Date(addedMinute))
         break
       }
       case 'subtract': {
-        const subtractedMinute = minute.setMinutes(minute.getMinutes() - 1)
+        const subtractedMinute = minute.setMinutes(minute?.getMinutes() - 1)
         setTimeToDisplay(new Date(subtractedMinute))
-        setMeridianToDisplay(timeToDisplay.getHours() >= 12 ? 'PM' : 'AM')
+        setMeridianToDisplay(timeToDisplay?.getHours() >= 12 ? 'PM' : 'AM')
+        onSelectTime(new Date(subtractedMinute))
         break
       }
       default:
@@ -142,19 +147,21 @@ const TimePicker = (props: TimePickerProps & React.ComponentProps<'div'>) => {
     event.stopPropagation()
     const changedMeridian = meridian === 'AM' ? 'PM' : 'AM'
     if (changedMeridian === 'AM') {
-      const changedHour = timeToDisplay.setHours(timeToDisplay.getHours() % 12)
+      const changedHour = timeToDisplay.setHours(timeToDisplay?.getHours() % 12)
       setTimeToDisplay(new Date(changedHour))
+      onSelectTime(new Date(changedHour))
     } else {
-      const changedHour = timeToDisplay.setHours(timeToDisplay.getHours() + 12)
+      const changedHour = timeToDisplay.setHours(timeToDisplay?.getHours() + 12)
       setTimeToDisplay(new Date(changedHour))
+      onSelectTime(new Date(changedHour))
     }
     setMeridianToDisplay(changedMeridian)
   }
 
   const display24HoursHour = is24Hours
-    ? timeToDisplay.getHours().toString().padStart(2, '0')
-    : (timeToDisplay.getHours() !== 12 ? timeToDisplay.getHours() % 12 : 12)
-        .toString()
+    ? timeToDisplay?.getHours()?.toString().padStart(2, '0')
+    : (timeToDisplay?.getHours() !== 12 ? timeToDisplay?.getHours() % 12 : 12)
+        ?.toString()
         .padStart(2, '0')
 
   const RenderTimeSelector = () => {
@@ -190,7 +197,7 @@ const TimePicker = (props: TimePickerProps & React.ComponentProps<'div'>) => {
                 />
               </svg>
             </span>
-            <div>{timeToDisplay.getMinutes().toString().padStart(2, '0')}</div>
+            <div>{timeToDisplay?.getMinutes()?.toString().padStart(2, '0')}</div>
             <span onClick={(event) => changeMinute(timeToDisplay, 'subtract', event)}>
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                 <path
@@ -228,8 +235,8 @@ const TimePicker = (props: TimePickerProps & React.ComponentProps<'div'>) => {
   const closeTimePicker = (e: MouseEvent) => {
     if (timePickerRef.current && !timePickerRef.current.contains(e.target as HTMLElement)) {
       setShowCalendar(false)
-      // setTimeToDisplay(value)
-      onSelectTime(timeToDisplay)
+      setTimeToDisplay(value || new Date())
+      // onSelectTime(timeToDisplay)
       document.removeEventListener('click', closeTimePicker)
     }
   }
@@ -255,27 +262,28 @@ const TimePicker = (props: TimePickerProps & React.ComponentProps<'div'>) => {
         document.addEventListener('click', closeTimePicker)
       }}
     >
-      <div className={mergeClassNames(classes.timepicker_main)}>
-        <input
-          className={mergeClassNames(classes.timepicker_input)}
-          spellCheck={false}
-          disabled={isDisabled}
-          type="text"
-          readOnly
-          placeholder={placeholder}
-          value={value ? value.toString() : timeToDisplay.toString()}
-          name={name}
-        />
-        <div
-          className={mergeClassNames(
-            classes.timepicker,
-            timePickerSizes[size || 'md'],
-            isDisabled && classes.timepicker_disabled,
-          )}
-        >
-          {getFormattedTime(timeToDisplay) || '--:-- -'}
-        </div>
-      </div>
+      <input
+        className={mergeClassNames(
+          classes.timepicker_input,
+          value && classes.timepicker_input_hidden,
+        )}
+        spellCheck={false}
+        disabled={isDisabled}
+        type="text"
+        readOnly
+        placeholder={placeholder}
+        value={value ? value?.toString() : ''}
+        name={name}
+      />
+      <button
+        className={mergeClassNames(classes.timepicker_main, timePickerSizes[size || 'md'])}
+        data-invalid={error || null}
+        disabled={isDisabled}
+        data-with-end-icon={true}
+        type="button"
+      >
+        {getFormattedTime(value)}
+      </button>
       {/* end icon */}
 
       <div className={mergeClassNames(classes.timepicker_end)}>
@@ -285,11 +293,19 @@ const TimePicker = (props: TimePickerProps & React.ComponentProps<'div'>) => {
             isDisabled && classes.timepicker_icon__disabled,
           )}
         >
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-            <path
-              fill="currentColor"
-              d="M12 20a8 8 0 0 0 8-8a8 8 0 0 0-8-8a8 8 0 0 0-8 8a8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10a10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67l-.75 1.23L11 13V7h1.5Z"
-            />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="1.125rem"
+            height="1.125rem"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+            <path d="M12 7l0 5l3 3"></path>
           </svg>
         </span>
       </div>

@@ -31,29 +31,22 @@ const defaultDatePickerProps: DatePickerProps = {
   onDateChange: undefined,
   placeholder: undefined,
   dateFormat: 'DD/MM/YYYY',
-  name: undefined,
+  name: undefined
 }
 
 const DatePicker = (props: DatePickerProps & React.ComponentProps<'div'>) => {
-  const {
-    size,
-    error,
-    isDisabled,
-    value = new Date(),
-    onDateChange,
-    placeholder,
-    dateFormat,
-    name,
-    ...rest
-  } = props
-  const [monthToDisplay, setMonthToDisplay] = useState(value ? new Date(value) : new Date())
+  const { size, error, isDisabled, value, onDateChange, placeholder, dateFormat, name, ...rest } =
+    props
+  const [monthToDisplay, setMonthToDisplay] = useState<Date | undefined>(
+    value ? new Date(value) : new Date(),
+  )
   const [showCalendar, setShowCalendar] = useState(false)
   const [showYears, setShowYears] = useState(false)
   const datePickerRef = useRef<HTMLDivElement | null>(null)
   const datepickerSizes = {
-    sm: classes.datepicker_sm,
-    md: classes.datepicker_md,
-    lg: classes.datepicker_lg,
+    sm: classes.datepicker_main_sm,
+    md: classes.datepicker_main_md,
+    lg: classes.datepicker_main_lg,
   }
 
   const months = [
@@ -74,24 +67,26 @@ const DatePicker = (props: DatePickerProps & React.ComponentProps<'div'>) => {
   const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 
   const getDaysInMonth = (date: Date) => {
-    const year = date.getFullYear()
-    const month = date.getMonth()
-    return new Date(year, month + 1, 0).getDate()
+    const year = date?.getFullYear()
+    const month = date?.getMonth()
+    return new Date(year, month + 1, 0)?.getDate()
   }
 
   const getFirstDayOfMonth = (date: Date) => {
-    const year = date.getFullYear()
-    const month = date.getMonth()
+    const year = date?.getFullYear()
+    const month = date?.getMonth()
     return new Date(year, month, 1).getDay()
   }
 
-  const handlePrevMonthChange = () => {
-    const monthSubtracted = monthToDisplay.setMonth(monthToDisplay.getMonth() - 1)
+  const handlePrevMonthChange = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation()
+    const monthSubtracted = monthToDisplay?.setMonth(monthToDisplay?.getMonth() - 1)
     setMonthToDisplay(new Date(monthSubtracted))
   }
 
-  const handleNextMonthChange = () => {
-    const monthAdded = monthToDisplay.setMonth(monthToDisplay.getMonth() + 1)
+  const handleNextMonthChange = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation()
+    const monthAdded = monthToDisplay?.setMonth(monthToDisplay?.getMonth() + 1)
     setMonthToDisplay(new Date(monthAdded))
   }
 
@@ -99,50 +94,51 @@ const DatePicker = (props: DatePickerProps & React.ComponentProps<'div'>) => {
     return months[month]?.slice(0, 3)
   }
 
-  const getFormattedDate = (date: Date) => {
+  const getFormattedDate = (date: Date | undefined) => {
+    if (!date) return
     const formatFunctions = {
       'DD/MM/YYYY': () =>
-        `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1)
+        `${date?.getDate().toString().padStart(2, '0')}/${(date?.getMonth() + 1)
           .toString()
-          .padStart(2, '0')}/${date.getFullYear()}`,
+          .padStart(2, '0')}/${date?.getFullYear()}`,
       'MM/DD/YYYY': () =>
-        `${(date.getMonth() + 1).toString().padStart(2, '0')}/${date
-          .getDate()
+        `${(date?.getMonth() + 1).toString().padStart(2, '0')}/${date
+          ?.getDate()
           .toString()
-          .padStart(2, '0')}/${date.getFullYear()}`,
+          .padStart(2, '0')}/${date?.getFullYear()}`,
       'YYYY/MM/DD': () =>
-        `${date.getFullYear()}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date
-          .getDate()
+        `${date?.getFullYear()}/${(date?.getMonth() + 1).toString().padStart(2, '0')}/${date
+          ?.getDate()
           .toString()
           .padStart(2, '0')}`,
       'DD-MM-YYYY': () =>
-        `${date.getDate().toString().padStart(2, '0')}-${(date.getMonth() + 1)
+        `${date?.getDate().toString().padStart(2, '0')}-${(date?.getMonth() + 1)
           .toString()
-          .padStart(2, '0')}-${date.getFullYear()}`,
+          .padStart(2, '0')}-${date?.getFullYear()}`,
       'MM-DD-YYYY': () =>
-        `${(date.getMonth() + 1).toString().padStart(2, '0')}-${date
-          .getDate()
+        `${(date?.getMonth() + 1).toString().padStart(2, '0')}-${date
+          ?.getDate()
           .toString()
-          .padStart(2, '0')}-${date.getFullYear()}`,
+          .padStart(2, '0')}-${date?.getFullYear()}`,
       'YYYY-MM-DD': () =>
-        `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date
-          .getDate()
+        `${date?.getFullYear()}-${(date?.getMonth() + 1).toString().padStart(2, '0')}-${date
+          ?.getDate()
           .toString()
           .padStart(2, '0')}`,
       'DD MMM YYYY': () =>
-        `${date.getDate().toString().padStart(2, '0')} ${getMonthName(
-          date.getMonth(),
-        )} ${date.getFullYear()}`,
+        `${date?.getDate().toString().padStart(2, '0')} ${getMonthName(
+          date?.getMonth(),
+        )} ${date?.getFullYear()}`,
       'YYYY MMM DD': () =>
-        `${date.getFullYear()} ${getMonthName(date.getMonth())} ${date
-          .getDate()
+        `${date?.getFullYear()} ${getMonthName(date?.getMonth())} ${date
+          ?.getDate()
           .toString()
           .padStart(2, '0')}`,
       'MMM DD, YYYY': () =>
-        `${getMonthName(date.getMonth())} ${date
-          .getDate()
+        `${getMonthName(date?.getMonth())} ${date
+          ?.getDate()
           .toString()
-          .padStart(2, '0')}, ${date.getFullYear()}`,
+          .padStart(2, '0')}, ${date?.getFullYear()}`,
     }
 
     const formatFunction = formatFunctions[dateFormat || 'DD/MM/YYYY']
@@ -196,8 +192,9 @@ const DatePicker = (props: DatePickerProps & React.ComponentProps<'div'>) => {
                     )}
                     id={year.toString()}
                     key={year}
-                    onClick={() => {
-                      const yearChanged = monthToDisplay.setFullYear(year)
+                    onClick={(event) => {
+                      event.stopPropagation()
+                      const yearChanged = monthToDisplay?.setFullYear(year)
                       setMonthToDisplay(new Date(yearChanged))
                       setShowYears(false)
                     }}
@@ -247,7 +244,7 @@ const DatePicker = (props: DatePickerProps & React.ComponentProps<'div'>) => {
             onClick={handlePrevMonthChange}
             disabled={
               showYears ||
-              (monthToDisplay.getFullYear() === 1900 && monthToDisplay.getMonth() === 0)
+              (monthToDisplay?.getFullYear() === 1900 && monthToDisplay?.getMonth() === 0)
             }
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -256,10 +253,13 @@ const DatePicker = (props: DatePickerProps & React.ComponentProps<'div'>) => {
           </button>
           {/* displaying month */}
           <div className={mergeClassNames(classes.datepicker_calendar__header__cm)}>
-            {months[monthToDisplay.getMonth()]} {monthToDisplay.getFullYear()}
+            {months[monthToDisplay?.getMonth()]} {monthToDisplay?.getFullYear()}
             <span
               className={mergeClassNames(classes.datepicker_calendar__header__ca)}
-              onClick={(event) => setShowYears(!showYears)}
+              onClick={(event) => {
+                event.stopPropagation()
+                setShowYears(!showYears)
+              }}
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                 <path
@@ -279,7 +279,7 @@ const DatePicker = (props: DatePickerProps & React.ComponentProps<'div'>) => {
             onClick={handleNextMonthChange}
             disabled={
               showYears ||
-              (monthToDisplay.getFullYear() === 2099 && monthToDisplay.getMonth() === 11)
+              (monthToDisplay?.getFullYear() === 2099 && monthToDisplay?.getMonth() === 11)
             }
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -330,7 +330,7 @@ const DatePicker = (props: DatePickerProps & React.ComponentProps<'div'>) => {
                         onClick={date ? (event) => onSelectDate(date, event) : () => {}}
                         key={ind}
                       >
-                        {date === undefined ? null : new Date(date).getDate()}
+                        {date === undefined ? null : new Date(date)?.getDate()}
                       </div>
                     )
                   })}
@@ -348,19 +348,16 @@ const DatePicker = (props: DatePickerProps & React.ComponentProps<'div'>) => {
     if (datePickerRef.current && !datePickerRef.current.contains(e.target as HTMLElement)) {
       setShowCalendar(false)
       setShowYears(false)
-      setMonthToDisplay(value)
+      setMonthToDisplay(value || new Date())
+      document.removeEventListener('click', closeCalendar)
     }
   }
 
   const onSelectDate = (date: Date | number, event: React.MouseEvent<HTMLDivElement>) => {
+    event.stopPropagation()
     setMonthToDisplay(new Date(date))
     onDateChange && onDateChange(new Date(date))
   }
-
-  useEffect(() => {
-    document.addEventListener('mousedown', closeCalendar)
-    return () => document.removeEventListener('mousedown', closeCalendar)
-  }, [])
 
   return (
     <div
@@ -372,30 +369,30 @@ const DatePicker = (props: DatePickerProps & React.ComponentProps<'div'>) => {
       {...rest}
       onClick={isDisabled ? () => {} : openCalendar}
       ref={datePickerRef}
+      onMouseLeave={() => document.addEventListener('click', closeCalendar)}
     >
-      <div className={mergeClassNames(classes.datepicker_main)}>
-        <input
-          className={mergeClassNames(classes.datepicker_input)}
-          spellCheck={false}
-          disabled={isDisabled}
-          type="text"
-          readOnly
-          placeholder={placeholder}
-          value={value ? value.toString() : ''}
-          name={name}
-        />
-        <div
-          className={mergeClassNames(
-            classes.datepicker,
-            datepickerSizes[size || 'md'],
-            isDisabled && classes.datepicker_disabled,
-          )}
-        >
-          {getFormattedDate(value)}
-        </div>
-      </div>
+      <input
+        className={mergeClassNames(
+          classes.datepicker_input,
+          value && classes.datepicker_input_hidden,
+        )}
+        spellCheck={false}
+        disabled={isDisabled}
+        type="text"
+        readOnly
+        placeholder={placeholder}
+        value={value ? value.toString() : ''}
+        name={name}
+      />
+      <button
+        className={mergeClassNames(classes.datepicker_main, datepickerSizes[size || 'md'])}
+        data-invalid={error || null}
+        disabled={isDisabled}
+        type="button"
+      >
+        {getFormattedDate(value)}
+      </button>
       {/* end icon */}
-
       <div className={mergeClassNames(classes.datepicker_end)}>
         <span
           className={mergeClassNames(
@@ -403,12 +400,42 @@ const DatePicker = (props: DatePickerProps & React.ComponentProps<'div'>) => {
             isDisabled && classes.datepicker_icon__disabled,
           )}
         >
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-            <path
-              fill="currentColor"
-              d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5v-5Z"
-            />
+          {/* {value ? (
+            <svg
+              viewBox="0 0 15 15"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              width="1.125rem"
+              height="1.125rem"
+            >
+              <path
+                d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
+                fill="currentColor"
+                fillRule="evenodd"
+                clipRule="evenodd"
+              ></path>
+            </svg>
+          ) : ( */}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="1.125rem"
+            height="1.125rem"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="#2c3e50"
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z" />
+            <path d="M16 3v4" />
+            <path d="M8 3v4" />
+            <path d="M4 11h16" />
+            <path d="M11 15h1" />
+            <path d="M12 15v3" />
           </svg>
+          {/* )} */}
         </span>
       </div>
       {showCalendar && <RenderCalendar />}

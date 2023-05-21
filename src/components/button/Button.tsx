@@ -56,7 +56,7 @@ const Button = (props: ButtonProps & React.ComponentProps<'button'>) => {
         variant={variant}
         className={buttonClassNames}
       >
-        {isLoading && <Spinner color="white" size={rest.size} />}
+        {isLoading && <Spinner color="white" />}
         {children}
       </RippleButton>
     )
@@ -64,7 +64,7 @@ const Button = (props: ButtonProps & React.ComponentProps<'button'>) => {
 
   return (
     <button {...rest} disabled={isDisabled || isLoading} className={buttonClassNames}>
-      {isLoading && <Spinner color="white" size={rest.size} />}
+      {isLoading && <Spinner color="white" />}
       {children}
     </button>
   )

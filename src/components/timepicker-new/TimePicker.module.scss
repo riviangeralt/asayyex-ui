@@ -1,77 +1,135 @@
-@import '../../styles/mixins.scss';
+@import '../../styles/mixin/input';
 
 .timepicker_container {
-  @apply relative border-2 border-slate-400 rounded max-w-[300px] outline-none text-left bg-white flex items-center pr-6 focus-within:border-[var(--primary-color-500)];
+  position: relative;
 
-  &.timepicker_disabled {
-    @apply border-[var(--primary-color-300)] bg-[var(--primary-color-100)] cursor-not-allowed;
-  }
-
-  &.timepicker_error {
-    @apply border-red-500;
+  .timepicker_start {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 2.25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .timepicker_end {
-    @apply flex items-center justify-center right-2;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 2.25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
+  .timepicker_start,
   .timepicker_end {
-    @apply absolute;
-
     .timepicker_icon {
-      @apply w-[1.5rem] h-[1.5rem];
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
       &__disabled {
-        @apply cursor-not-allowed text-slate-500
+        color: var(--disable-500);
+        cursor: default;
+        pointer-events: none;
       }
+    }
+  }
+
+  .timepicker_input {
+    position: absolute !important;
+    top: 0;
+    width: 91% !important;
+    height: 100% !important;
+    /* border: none; */
+    outline: none;
+    z-index: 2;
+    all: unset;
+    top: 0;
+    z-index: 11;
+    padding-inline: 0.875rem;
+    // display: none;
+
+    &_hidden {
+      display: none;
     }
   }
 
   .timepicker_main {
-    @apply min-w-0 w-full;
-
-    .timepicker_input{
-      @apply hidden;
+    &_sm {
+      @include input-sm;
+      display: flex;
+      align-items: center;
     }
 
-    .timepicker {
-      @apply outline-none w-full select-none cursor-default;
+    &_md {
+      @include input-md;
+      display: flex;
+      align-items: center;
+    }
 
-      &_sm {
-        @include input-sm;
-      }
-
-      &_md {
-        @include input-md;
-      }
-
-      &_lg {
-        @include input-lg;
-      }
-
-      &_disabled{
-        @apply cursor-not-allowed bg-[var(--primary-color-100)] select-none text-gray-500
-      }
+    &_lg {
+      @include input-lg;
+      display: flex;
+      align-items: center;
     }
   }
 }
 
 .timepicker_option {
-  @apply absolute z-10 top-10 mt-1 w-[300px] max-h-fit overflow-auto rounded-md bg-white p-3 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm scrollbar-thumb-slate-300 scrollbar-thin;
+  all: unset;
+  position: absolute;
+  background-color: #fff;
+  width: 92%;
+  top: 2.8rem;
+  left: 0;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1), -5px 0px 10px rgba(0, 0, 0, 0.1);
+  z-index: 99;
+  list-style: none;
+  overflow: auto;
+  padding: 0.75rem;
+  max-height: fit-content;
+  border-radius: 4px;
+  font-size: var(--font-md);
+  transition: height 0.4s;
 
-  &__header{
-    @apply flex justify-center items-center text-xl font-bold gap-2 select-none;
+  &__header {
+    display: flex;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    font-weight: 700;
 
-    &_hour, &_minute, &_format{
-        @apply flex flex-col items-center;
+    &_hour,
+    &_minute,
+    &_format {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
 
-        span{
-            @apply cursor-pointer;
-        }
+      span {
+        cursor: pointer;
+        width: 100%;
+        height: 100%;
+      }
     }
   }
 
-  &__footer{
-    @apply flex justify-center gap-4 mt-4;
+  &__footer {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
   }
 }

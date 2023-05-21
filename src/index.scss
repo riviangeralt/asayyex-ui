@@ -1,6 +1,8 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "./styles/mixin/variables";
+* {
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  box-sizing: border-box;
+}
 
 :root {
   --primary-color-100: #d3d9f0;
@@ -12,8 +14,93 @@
   --primary-color-700: #16276b;
   --primary-color-800: #0f1a47;
   --primary-color-900: #070d24;
-}
 
+  // error color
+  --red-100: rgb(254 226 226);
+  --red-200: rgb(254 202 202);
+  --red-300: rgb(252 165 165);
+  --red-400: rgb(248 113 113);
+  --red-500: #fa5252;
+  --red-600: rgb(220 38 38);
+  --red-700: rgb(185 28 28);
+  --red-800: rgb(153 27 27);
+  --red-900: rgb(127 29 29);
+
+  // for disable
+  --disable-50: rgb(248 250 252);
+  --disable-100: rgb(241 245 249);
+  --disable-200: rgb(226 232 240);
+  --disable-300: rgb(203 213 225);
+  --disable-400: rgb(148 163 184);
+  --disable-500: rgb(100 116 139);
+  --disable-600: rgb(71 85 105);
+  --disable-700: rgb(51 65 85);
+  --disable-800: rgb(30 41 59);
+  --disable-900: rgb(15 23 42);
+
+  // border radius
+  --radius-sm: 0.125rem;
+  /* 2px */
+  --radius: 0.25rem;
+  /* 4px */
+  --radius-md: 0.375rem;
+  /* 6px */
+  --radius-lg: 0.5rem;
+  /* 8px */
+  --radius-xl: 0.75rem;
+  /* 12px */
+  --radius-2xl: 1rem;
+  /* 16px */
+  --radius-3xl: 1.5rem;
+  /* 24px */
+  --radius-full: 9999px;
+
+  // shadow
+
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 5px 5px 10px 0px rgb(0 0 0 / 0.1), -5px -5px 10px 0px rgb(0 0 0 / 0.1), 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  --shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+
+  // warning
+  --warning-100: rgb(254 249 195);
+  --warning-200: rgb(254 240 138);
+  --warning-300: rgb(253 224 71);
+  --warning-400: rgb(250 204 21);
+  --warning-500: rgb(234 179 8);
+  --warning-600: rgb(202 138 4);
+  --warning-700: rgb(161 98 7);
+  --warning-800: rgb(133 77 14);
+  --warning-900: rgb(113 63 18);
+
+  // success
+  --success-100: rgb(220 252 231);
+  --success-200: rgb(187 247 208);
+  --success-300: rgb(134 239 172);
+  --success-400: rgb(74 222 128);
+  --success-500: rgb(34 197 94);
+  --success-600: rgb(22 163 74);
+  --success-700: rgb(21 128 61);
+  --success-800: rgb(22 101 52);
+  --success-900: rgb(20 83 45);
+
+  // fonts
+  --font-sm: #{$font-sm};
+  --font-md: #{$font-md};
+  --font-lg: #{$font-lg};
+
+  // screen-sizes
+  --screen-mobile-sm: 320px;
+  --screen-mobile-md: 375px;
+  --screen-mobile-lg: 425px;
+  --screen-tablet: 768px;
+  --screen-laptop-sm: 1024px;
+  --screen-laptop-lg: 1440px;
+
+}
 
 span.ripple {
   position: absolute;
@@ -30,49 +117,50 @@ span.ripple {
   }
 }
 
-
 #rtc-portal {
   overflow: hidden;
+
   div[class*='modal'] {
     div[class*='modal'] {
-      animation: popOut .5s ease-in-out;
+      animation: popOut 0.5s ease-in-out;
     }
   }
 
   div[class*='drawer_left'] {
     div[class*='drawer'] {
-      animation: fromLeft .5s ease-in-out;
+      animation: fromLeft 0.5s ease-in-out;
     }
   }
 
   div[class*='drawer_right'] {
     div[class*='drawer'] {
-      animation: fromRight .5s ease-in-out;
+      animation: fromRight 0.5s ease-in-out;
     }
   }
 
   div[class*='drawer_top'] {
     div[class*='drawer'] {
-      animation: fromTop .5s ease-in-out;
+      animation: fromTop 0.5s ease-in-out;
     }
   }
 
   div[class*='drawer_bottom'] {
     div[class*='drawer'] {
-      animation: fromBottom .5s ease-in-out;
+      animation: fromBottom 0.5s ease-in-out;
     }
   }
 }
 
 @keyframes fromTop {
   from {
-      // opacity: 0;
-      transform: translateY(-100%);
-    }
-    to {
-      // opacity: 1;
-      transform: translateY(0);
-    }
+    // opacity: 0;
+    transform: translateY(-100%);
+  }
+
+  to {
+    // opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes fromBottom {
@@ -80,6 +168,7 @@ span.ripple {
     // opacity: 0;
     transform: translateY(100%);
   }
+
   to {
     // opacity: 1;
     transform: translateY(0);
@@ -91,6 +180,7 @@ span.ripple {
     // opacity: 0;
     transform: translateX(-100%);
   }
+
   to {
     // opacity: 1;
     transform: translateY(0);
@@ -102,6 +192,7 @@ span.ripple {
     // opacity: 0;
     transform: translateX(100%);
   }
+
   to {
     // opacity: 1;
     transform: translateY(0);
@@ -113,6 +204,7 @@ span.ripple {
     opacity: 0;
     transform: scale(0);
   }
+
   to {
     opacity: 1;
     transform: scale(1);

@@ -1,88 +1,121 @@
 .switch {
-    @apply relative rounded-full cursor-pointer;
+    position: relative;
+    cursor: pointer;
+    border-radius: 9999px;
+    overflow: hidden;
 
     &_ball {
-        @apply bg-[var(--primary-color-500)] w-[22px] h-[22px] rounded-full inline-block transition-all absolute z-30 top-[50%] translate-y-[-50%];
+        position: absolute;
+        top: 4px;
+        z-index: 30;
+        display: inline-block;
+        height: 22px;
+        width: 22px;
+        border-radius: 9999px;
+        background-color: var(--primary-color-500);
+        transition-property: all;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 150ms;
     }
 
     &_contained {
-        @apply bg-slate-200 border-2 relative
+        position: relative;
+        border-width: 2px;
+        background-color: var(--disable-200);
     }
 
     &_outlined {
-        @apply border-2 border-[var(--primary-color-500)] relative
+        position: relative;
+        border: 2px solid var(--primary-color-500);
     }
 
     &_disabled {
-        @apply cursor-not-allowed;
+        cursor: not-allowed;
 
         .switch_ball {
-            @apply bg-[var(--primary-color-300)]
+            background-color: var(--primary-color-300);
         }
 
         &.switch_outlined {
-            @apply border-[var(--primary-color-300)]
+            border-color: var(--primary-color-300);
         }
 
     }
 
     &_error{
-        @apply border-red-500;
+        border-color: var(--red-500);
 
         .switch_ball{
-            @apply bg-red-500
+            background-color: var(--red-500);
         }
     }
 
     &_sm {
-        @apply w-[40px] h-[25px] p-[2px];
+        width: 40px;
+        height: 20px;
+        padding: 2px;
 
         .switch_ball {
-            @apply w-[15px] h-[15px];
+            width: 15px;
+            height: 15px;
+            top: unset;
 
             &.switch_ball__left {
-                @apply left-[4px] translate-x-[0%]
+                left: 4px;
             }
 
             &.switch_ball__right {
-                @apply translate-x-[100%]
+               right: 4px;
             }
         }
     }
 
     &_md {
-        @apply w-[51px] h-[30px];
+        width: 51px;
+        height: 30px;
 
         .switch_ball {
-            @apply w-[22px] h-[22px];
+            width: 22px;
+            height: 22px;
+            transition: position;
 
             &.switch_ball__left {
-                @apply left-[4px] translate-x-[0%]
+                left: 4px;
             }
 
             &.switch_ball__right {
-                @apply translate-x-[100%]
+                right: 4px;
             }
         }
     }
 
     &_lg {
-        @apply w-[65px] h-[35px];
+        width: 65px;
+        height: 35px;
 
         .switch_ball {
-            @apply w-[24px] h-[24px];
+            width: 24px;
+            height: 24px;
 
             &.switch_ball__left {
-                @apply left-[4px] translate-x-[0%]
+                left: 4px;
             }
 
             &.switch_ball__right {
-                @apply translate-x-[140%]
+                right: 4px;
             }
         }
     }
 
     .switch_input {
-        @apply w-full h-full z-[31] absolute left-0 top-[50%] translate-y-[-50%] opacity-0 cursor-pointer disabled:cursor-not-allowed;
+        position: absolute;
+        left: 0px;
+        top: 50%;
+        z-index: 31;
+        height: 100%;
+        width: 100%;
+        cursor: pointer;
+        opacity: 0;
+        transform: translateY(-50%);
     }
 }

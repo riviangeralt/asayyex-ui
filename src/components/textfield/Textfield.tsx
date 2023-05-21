@@ -23,9 +23,9 @@ const TextField = (props: TextFieldProps & Omit<React.ComponentProps<'input'>, '
   const { size, error, isDisabled, leftIcon, rightIcon, ...rest } = props
 
   const textfieldSizes = {
-    sm: classes.textfield_sm,
-    md: classes.textfield_md,
-    lg: classes.textfield_lg,
+    sm: classes.textfield_main_sm,
+    md: classes.textfield_main_md,
+    lg: classes.textfield_main_lg,
   }
 
   return (
@@ -54,14 +54,17 @@ const TextField = (props: TextFieldProps & Omit<React.ComponentProps<'input'>, '
       )}
 
       {/* input and multi values container */}
-      <div className={mergeClassNames(classes.textfield_main)}>
+      {/* <div className={mergeClassNames(classes.textfield_main)}> */}
         <input
-          className={mergeClassNames(classes.textfield, textfieldSizes[size || 'md'])}
+          className={mergeClassNames(classes.textfield_main, textfieldSizes[size || 'md'])}
           spellCheck={false}
           disabled={isDisabled}
+          data-with-leading-icon={leftIcon ? true : null}
+          data-with-end-icon={rightIcon ? true : null}
+          data-invalid={error || null}
           {...rest}
         />
-      </div>
+      {/* </div> */}
       {/* end icon */}
 
       {rightIcon && (

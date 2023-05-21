@@ -28,8 +28,8 @@ const Accordion = (props: AccordionProps) => {
 
         <div
           className={mergeClassNames(
-            (isOpen ? isOpen : isAccordionOpen) ? 'rotate-180' : '',
-            'transition-all',
+            classes.accordion_header__icon,
+            (isOpen ? isOpen : isAccordionOpen) && classes.accordion_header__icon_open,
           )}
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">

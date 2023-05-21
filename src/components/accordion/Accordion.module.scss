@@ -1,28 +1,53 @@
 .accordion {
-    @apply bg-white p-3 rounded shadow border-2 border-[var(--primary-color-500)];
+    background-color: #ffffff;
+    padding: 0.75rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 2px solid var(--primary-color-500);
 
     .accordion_header {
-        @apply flex justify-between cursor-pointer items-center font-bold
-    }
-    
-    .accordion_body {
-        @apply h-0 overflow-hidden transition-all;
+        display: flex;
+        justify-content: space-between;
+        cursor: pointer;
+        align-items: center;
+        font-weight: bold;
 
-        &__open {
-            @apply min-h-min overflow-visible mt-4 transition-all
-        }
-    }
-    
-    &.accordion_disabled{
-        @apply bg-slate-200 text-slate-600 cursor-not-allowed border-[var(--primary-color-300)];
+        &__icon{
+            transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            height: 24px;
 
-        .accordion_header{
-            @apply  cursor-not-allowed select-none;
-
-            img{
-                @apply bg-slate-200
+            &_open{
+                transform: rotate(180deg);
             }
         }
-    } 
-}
+    }
 
+    .accordion_body {
+        height: 0px;
+        overflow: hidden;
+        transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+
+        &__open {
+            height: min-content;
+            overflow: visible;
+            margin-top: 1rem;
+            transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    }
+
+    &.accordion_disabled {
+        background-color: var(--disable-200);
+        cursor: not-allowed;
+        color: var(--disable-600);
+        border-color: var(--primary-color-300);
+
+        .accordion_header {
+            cursor: not-allowed;
+            user-select: none;
+
+            img {
+                background-color: var(--disable-200);
+            }
+        }
+    }
+}

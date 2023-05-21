@@ -1,60 +1,89 @@
 // Spinner.module.scss
 
 .spinner_container {
-    @apply inline-block;
+    display: inline-block;
 
     .spinner {
-        @apply w-6 h-6 border-4 rounded-full border-t-[#34d399] animate-spin;
+        width: 1.5rem;
+        height: 1.5rem;
+        border-radius: var(--radius-full);
+        border-top-color: #34d399;
+        border-color: black;
+        animation: spin infinite linear 0.5s;
+        border-style: solid;
 
         &_sm {
-            @apply w-4 h-4 border-2;
+            width: 0.8rem;
+            height: 0.8rem;
+            border-width: 2px;
         }
 
         &_md {
-            @apply w-6 h-6 border-4;
+            width: 1rem;
+            height: 1rem;
+            border-width: 4px;
         }
 
         &_lg {
-            @apply w-7 h-7 border-4;
+            width: 1.25rem;
+            height: 1.25rem;
+            border-width: 4px;
         }
 
-        &_xl{
-            @apply w-12 h-12 border-4;
+        &_xl {
+            width: 3rem;
+            height: 3rem;
+            border-width: 4px;
         }
 
-        &_2xl{
-            @apply w-16 h-16 border-4;
+        &_2xl {
+            width: 4rem;
+            height: 4rem;
+            border-width: 4px;
         }
 
-        &_3xl{
-            @apply w-20 h-20 border-4;
+        &_3xl {
+            width: 5rem;
+            height: 5rem;
+            border-width: 4px;
         }
 
         &_primary {
-            @apply border-t-[#6366f1];
+            border-color: var(--primary-color-300);
+            border-top-color: #ffffff;
         }
 
         &_secondary {
-            @apply border-t-[#8B5CF6];
+            border-color: #8B5CF6;
+            border-top-color: #ffffff;
         }
 
         &_success {
-            @apply border-t-[#10B981];
+            border-color: #10B981;
+            border-top-color: #ffffff;
         }
 
         &_warning {
-            @apply border-t-[#F59E0B];
+            border-color: #F59E0B;
+            border-top-color: #ffffff;
         }
 
         &_danger {
-            @apply border-t-[#EF4444];
+            border-color: #EF4444;
+            border-top-color: #ffffff;
         }
 
         &_white {
-            @apply border-[var(--primary-color-300)] border-t-white
+            border-color: var(--primary-color-300);
+            border-top-color: #ffffff;
         }
-
     }
 
 
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
 }

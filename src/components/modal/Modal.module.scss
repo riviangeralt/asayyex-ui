@@ -1,51 +1,102 @@
+@import '../../styles/mixin/scrollbar';
+
 .modal_container {
-    @apply fixed top-0 left-0 w-screen h-screen flex justify-center bg-[#0000009a] z-[999999] p-4;
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 1rem;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    background: #0000009a;
+    z-index: 999999;
+
 
     .modal {
-        @apply bg-white shadow-sm rounded p-4 backdrop-blur-lg relative min-h-[300px] max-h-[630px] flex flex-col gap-2;
+        display: flex;
+        position: relative;
+        padding: 1rem;
+        background-color: #ffffff;
+        flex-direction: column;
+        border-radius: 0.25rem;
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        backdrop-filter: blur(16px);
 
         &_sm {
-            @apply w-[80%] sm:w-[70%] md:w-[60%] lg:w-[50%] xl:w-[40%]
+            width: 80%;
+
+            @media (min-width: 640px) {
+                width: 70%;
+            }
+
+            @media (min-width: 768px) {
+                width: 60%;
+            }
+
+            @media (min-width: 1024px) {
+                width: 50%;
+            }
+
+            @media (min-width: 1280px) {
+                width: 40%;
+            }
+
+
         }
-        
-        &_md{
-            @apply w-[50%] h-[50%]
+
+        &_md {
+            width: 50%;
+            height: 50%;
         }
-        
+
         &_lg {
-            @apply w-[70%] h-[70%]
+            width: 70%;
+            height: 70%;
         }
 
-        .modal_header{
-            @apply flex justify-between items-center flex-shrink;
+        .modal_header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 1;
 
-            .modal_title{
-                @apply font-bold text-2xl
+            .modal_title {
+                font-size: 1.5rem;
+                line-height: 2rem;
+                font-weight: 700;
+                margin: 0;
             }
 
             .modal_close {
-                @apply cursor-pointer
+              cursor: pointer;
             }
         }
 
-        .modal_body{
-            @apply  min-h-fit max-h-[500px] overflow-y-scroll scrollbar-thumb-slate-300 scrollbar-thin flex-1
+        .modal_body {
+            @include scrollbar;
+            min-height: fit-content;
+            max-height: 500px;
+            overflow-y: scroll;
+            flex: 1 1 0%;
         }
-        
-        .modal_footer{
-            @apply flex justify-end gap-4
+
+        .modal_footer {
+            display: flex;
+            justify-content: end;
+            gap: 1rem;
         }
     }
 
     &.modal_top {
-        @apply items-start
+        align-items: flex-start;
     }
-    
+
     &.modal_center {
-        @apply items-center
+        align-items: center;
     }
-    
+
     &.modal_bottom {
-        @apply items-end
+        align-items: flex-end;
     }
 }

@@ -1,56 +1,133 @@
-@import '../../styles/mixins.scss';
+@import '../../styles/mixin/input';
 
 .button {
-    @apply rounded outline-none text-white shadow transition-all flex items-center justify-center gap-2 relative overflow-hidden;
+    border: none;
+    outline: none;
+    color: #ffffff;
+    box-shadow: var(--shadow);
+    transition: all 0.5s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius);
+    cursor: pointer;
 
-    &.button_disabled{
-        @apply disabled:cursor-not-allowed disabled:bg-[var(--primary-color-300)] disabled:select-none disabled:border-[var(--primary-color-300)]
+    &.button_disabled {
+        cursor: not-allowed;
     }
 
     &_sm {
         @include input-sm
     }
-    
+
     &_md {
         @include input-md
     }
-    
+
     &_lg {
         @include input-lg
     }
 
     &_contained {
-        @apply bg-[var(--primary-color-500)] enabled:hover:bg-[var(--primary-color-700)] border-[2px] border-[var(--primary-color-500)] enabled:hover:border-[var(--primary-color-700)] #{!important};
+        background: var(--primary-color-500);
+        border: 2px solid var(--primary-color-500);
+
+        &:hover {
+            background: var(--primary-color-700);
+            border: 2px solid var(--primary-color-700);
+        }
+
+        &:disabled {
+            user-select: none;
+            background: var(--primary-color-300);
+            border-color: var(--primary-color-300);
+        }
     }
-    
+
     &_outlined {
-        @apply text-[var(--primary-color-500)] border-[2px] border-[var(--primary-color-500)] enabled:hover:bg-[var(--primary-color-700)] enabled:hover:border-[var(--primary-color-700)] enabled:hover:text-white #{!important};
+        background: transparent;
+        border: 2px solid var(--primary-color-500);
+        color: var(--primary-color-500);
 
-        &.button_disabled{
-            @apply disabled:bg-[var(--primary-color-100)] #{!important};
+        &:hover {
+            background: var(--primary-color-700);
+            border: 2px solid var(--primary-color-700);
+            color: #ffffff;
+        }
+
+        &:disabled {
+            user-select: none;
+            background: var(--primary-color-100);
+            border-color: var(--primary-color-300);
+            color: var(--primary-color-300);
         }
     }
 
-    &_link{
-        @apply shadow-none text-[var(--primary-color-500)] underline #{!important};
+    &_link {
+        background: transparent;
+        color: var(--primary-color-500);
+        text-decoration: underline;
+        box-shadow: var(--shadow-none);
 
-        &.button_disabled{
-            @apply disabled:text-[var(--primary-color-300)] disabled:bg-transparent #{!important};
+
+        &:active {
+            color: var(--primary-color-700);
+        }
+
+        &:disabled {
+            user-select: none;
+            color: var(--primary-color-300);
         }
     }
 
-    &_success{
-        @apply bg-green-500 enabled:hover:bg-green-700 border-[2px] border-green-500 enabled:hover:border-green-700 #{!important};
+    &_success {
+        background: var(--success-500);
+        border: 2px solid var(--success-500);
+
+        &:hover {
+            background: var(--success-700);
+            border: 2px solid var(--success-700);
+        }
+
+        &:disabled {
+            user-select: none;
+            background: var(--success-300);
+            border-color: var(--success-300);
+        }
     }
 
-    &_danger{
-        @apply bg-red-500 enabled:hover:bg-red-700 border-[2px] border-red-500 enabled:hover:border-red-700 #{!important};
+    &_danger {
+        background: var(--red-500);
+        border: 2px solid var(--red-500);
+
+        &:hover {
+            background: var(--red-700);
+            border: 2px solid var(--red-700);
+        }
+
+        &:disabled {
+            user-select: none;
+            background: var(--red-300);
+            border-color: var(--red-300);
+        }
     }
 
-    &_warning{
-        @apply bg-yellow-500 enabled:hover:bg-yellow-700 border-[2px] border-yellow-500 enabled:hover:border-yellow-700 #{!important};
+    &_warning {
+        background: var(--warning-500);
+        border: 2px solid var(--warning-500);
+
+        &:hover {
+            background: var(--warning-700);
+            border: 2px solid var(--warning-700);
+        }
+
+        &:disabled {
+            user-select: none;
+            background: var(--warning-300);
+            border-color: var(--warning-300);
+        }
     }
 }
-
-
-

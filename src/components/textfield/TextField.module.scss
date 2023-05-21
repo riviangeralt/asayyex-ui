@@ -1,64 +1,58 @@
-@import '../../styles/mixins.scss';
+@import '../../styles/mixin/input';
 
 .textfield_container {
-    @apply relative border-2 border-slate-400 rounded max-w-[300px] outline-none text-left bg-white flex items-center focus-within:border-[var(--primary-color-500)];
-  
-    &.textfield_disabled {
-      @apply border-[var(--primary-color-300)] bg-[var(--primary-color-100)] cursor-not-allowed;
-    }
+  position: relative;
 
-    &.textfield_error{
-      @apply border-red-500;
-    }
+  .textfield_start {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 2.25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-    &.textfield_start__space{
-        @apply pl-6
-    }
-  
-    &.textfield_end__space{
-        @apply pr-6
-    }
-  
+  .textfield_end {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 2.25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-    .textfield_start {
-      @apply flex items-center justify-center left-2;
-    }
-  
-    .textfield_end {
-      @apply flex items-center justify-center right-2;
-    }
+  .textfield_start,
+  .textfield_end {
+    .textfield_icon {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
-        .textfield_start,
-        .textfield_end {
-            @apply absolute;
-    
-            .textfield_icon {
-                @apply w-[1.5rem] h-[1.5rem];
-    
-                &__disabled {
-                    @apply cursor-not-allowed text-slate-500
-                }
-            }
-        }
-
-    .textfield_main {
-      @apply min-w-0 w-full;
-
-      .textfield{
-        @apply outline-none w-full cursor-text disabled:cursor-not-allowed disabled:bg-[var(--primary-color-100)];
-
-        &_sm {
-          @include input-sm;
-        }
-      
-        &_md {
-          @include input-md;
-        }
-      
-        &_lg {
-          @include input-lg;
-        }
+      &__disabled {
+        color: var(--disable-500);
+        cursor: default;
+        pointer-events: none;
       }
     }
   }
-  
+
+  .textfield_main {
+    &_sm {
+      @include input-sm;
+    }
+
+    &_md {
+      @include input-md;
+    }
+
+    &_lg {
+      @include input-lg;
+    }
+  }
+}
