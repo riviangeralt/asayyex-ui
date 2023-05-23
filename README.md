@@ -54,7 +54,7 @@ All the available components are listed down here. If you don't see any componen
 
 ---
 
-### #Accordion
+### Accordion
 
 Here is an example of `Accordion`
 
@@ -82,7 +82,7 @@ function App() {
 ---
 
 
-### #Button
+### Button
 
 Here is an example of `Button`
 
