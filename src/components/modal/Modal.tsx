@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { createPortal } from 'react-dom'
-import { mergeClassNames } from 'src'
+import { mergeClassNames } from 'src/utils'
 
 import classes from './Modal.module.scss'
 

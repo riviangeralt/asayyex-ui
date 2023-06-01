@@ -1,5 +1,6 @@
 import React from 'react'
-import { componentWithRipple, mergeClassNames } from 'src'
+import { mergeClassNames } from 'src/utils'
+import { componentWithRipple } from 'src/hoc'
 
 import Spinner from '../spinner/Spinner'
 import classes from './Button.module.scss'

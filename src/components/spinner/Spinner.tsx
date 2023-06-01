@@ -1,4 +1,4 @@
-import { mergeClassNames } from 'src'
+import { mergeClassNames } from 'src/utils'
 
 import classes from './Spinner.module.scss'
 

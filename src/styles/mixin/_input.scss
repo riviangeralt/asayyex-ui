@@ -1,99 +1,188 @@
-@import './variables';
-
 @mixin input-sm {
-    font-size: #{$font-sm};
-    height : #{$height-sm};
-    border: #{$border} solid #{$init-color};
-    border-radius: 0.25rem;
-    padding-inline: calc(2.25rem  / 3);
+    font-size: var(--font-sm);
+    height: var(--height-sm);
+    border: var(--border-w-sm) solid var(--disable-50);
+    border-radius: var(--radius);
+    padding-inline: calc(2.25rem / 3);
     transition: border-color .2s;
     width: 100%;
     outline: none;
     background-color: #fff;
 
-    &:focus{
+    &:focus {
         border-color: var(--primary-color-500);
     }
 
-    &:disabled{
-        background-color: #{$disabled-bg-color};
-        color: #{$disabled-font-color};
+    &:disabled {
+        background-color: var(--disable-100);
+        color: var(--disable-300);
+        pointer-events: none;
+        user-select: none;
+        opacity: 0.6;
     }
 
-    &[data-with-leading-icon="true"]{
+    &[data-with-leading-icon="true"] {
         padding-left: 2.25rem;
     }
 
-    &[data-with-end-icon="true"]{
+    &[data-with-end-icon="true"] {
         padding-right: 2.25rem;
     }
 
-    &[data-invalid="true"]{
+    &[data-invalid="true"] {
         border-color: var(--red-500);
         color: var(--red-500);
 
-        &::placeholder{
+        &::placeholder {
             color: var(--red-500);
         }
     }
 }
 
 @mixin input-md {
-    height : #{$height-md};
-    font-size: #{$font-md};
-    border: #{$border} solid #{$init-color};
-    border-radius: 0.25rem;
+    height: var(--height-md);
+    font-size: var(--font-md);
+    border: var(--border-w-sm) solid var(--disable-50);
+    border-radius: var(--radius);
     padding-inline: 0.875rem;
     transition: border-color .2s;
     width: 100%;
     outline: none;
     background-color: #fff;
 
-
-    &:focus{
+    &:focus {
         border-color: var(--primary-color-500);
     }
 
-    &:disabled{
-        background-color: #{$disabled-bg-color};
-        color: #{$disabled-font-color};
+    &:disabled {
+        background-color: var(--disable-100);
+        color: var(--disable-300);
+        pointer-events: none;
+        user-select: none;
+        opacity: 0.6;
     }
 
-    &[data-with-leading-icon="true"]{
+    &[data-with-leading-icon="true"] {
         padding-left: 2.25rem;
     }
 
-    &[data-with-end-icon="true"]{
+    &[data-with-end-icon="true"] {
         padding-right: 2.25rem;
     }
 
-    &[data-invalid="true"]{
+    &[data-invalid="true"] {
         border-color: var(--red-500);
         color: var(--red-500);
 
-        &::placeholder{
+        &::placeholder {
             color: var(--red-500);
         }
     }
 }
 
 @mixin input-lg {
-    height : #{$height-lg};
-    font-size: #{$font-lg};
-    border: #{$border} solid #{$init-color};
-    border-radius: 0.25rem;
+    height: var(--height-lg);
+    font-size: var(--font-lg);
+    border: var(--border-w-sm) solid var(--disable-50);
+    border-radius: var(--radius);
     padding-inline: 1.04167rem;
     transition: border-color .2s;
     width: 100%;
+    outline: none;
     background-color: #fff;
 
-
-    &:focus{
+    &:focus {
         border-color: var(--primary-color-500);
     }
 
-    &:disabled{
-        background-color: #{$disabled-bg-color};
-        color: #{$disabled-font-color};
+    &:disabled {
+        background-color: var(--disable-100);
+        color: var(--disable-300);
+        pointer-events: none;
+        user-select: none;
+        opacity: 0.6;
     }
+
+    &[data-with-leading-icon="true"] {
+        padding-left: 2.25rem;
+    }
+
+    &[data-with-end-icon="true"] {
+        padding-right: 2.25rem;
+    }
+
+    &[data-invalid="true"]:not(:disabled) {
+        border-color: var(--red-300);
+        color: var(--red-300);
+
+        &::placeholder {
+            color: var(--red-300);
+        }
+    }
+}
+
+@mixin label-sm {
+    font-size: var(--font-sm);
+    color: #212529;
+    font-weight: 500;
+    line-height: 1.55;
+}
+
+@mixin label-md {
+    font-size: var(--font-md);
+    color: #212529;
+    font-weight: 500;
+    line-height: 1.55;
+}
+
+@mixin label-lg {
+    font-size: var(--font-lg);
+    color: #212529;
+    font-weight: 500;
+    line-height: 1.55;
+}
+
+@mixin input-desc-sm {
+    font-size: calc(0.875rem - 0.125rem);
+    color: #868e96;
+    display: block;
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 0.3125rem;
+}
+
+@mixin input-desc-md {
+    font-size: calc(0.875rem);
+    color: #868e96;
+    display: block;
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 0.3125rem;
+}
+
+@mixin input-desc-lg {
+    font-size: calc(1rem);
+    color: #868e96;
+    display: block;
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 0.3125rem;
+}
+
+@mixin input-error-sm {
+    @include input-desc-sm;
+    color: var(--red-500);
+    margin-top: 0.3125rem;
+}
+
+@mixin input-error-md {
+    @include input-desc-md;
+    color: var(--red-500);
+    margin-top: 0.3125rem;
+}
+
+@mixin input-error-lg {
+    @include input-desc-lg;
+    color: var(--red-500);
+    margin-top: 0.3125rem;
 }

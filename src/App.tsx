@@ -1,18 +1,8 @@
 import { useState } from 'react'
 
-import {
-  Button,
-  Checkbox,
-  DatePicker,
-  Drawer,
-  Modal,
-  Select,
-  Switch,
-  TextField,
-  TimePicker,
-} from './components'
+import { Button, Select, TimePicker } from './components'
 
-const list  =  [
+const list = [
   { value: 'AL', label: 'Alabama' },
   { value: 'AK', label: 'Alaska' },
   { value: 'AS', label: 'American Samoa' },
@@ -76,9 +66,9 @@ const list  =  [
 
 function App() {
   const [checked, setChecked] = useState(false)
-  const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined)
+  const [selectedDate, setSelectedDate] = useState<Date | string | undefined>(undefined)
   const [isOpen, setIsOpen] = useState(false)
-  const [selectedTime, setSelectedTime] = useState<Date | undefined>(undefined)
+  const [selectedTime, setSelectedTime] = useState<string | undefined>(undefined)
   return (
     <div className="p-2 h-screen flex gap-4 items-start flex-wrap">
       <form
@@ -87,47 +77,28 @@ function App() {
           const data = new FormData(event.target as HTMLFormElement)
           // console.log(event.target, data)
           const parsed = Object.fromEntries(data)
-          console.log(parsed,"<<<")
+          console.log(parsed, '<<<')
+          // setIsOpen(true)
         }}
         style={{
           width: 300,
         }}
       >
-        <TextField name="text-input" placeholder="Type Something..." leftIcon={'91'} />
-        <Select
-          name="select"
-          options={list}
-          onChange={(ele)=>console.log(ele)}
-          placeholder='Select State'
-          // size='sm'
-        />
-        {/* <Switch name="aasd" size='sm'/> */}
-        <Checkbox size="md" name="test" />
-        <DatePicker
-          name="date-pick"
-          onDateChange={(date) => setSelectedDate(date)}
-          value={selectedDate}
-          dateFormat="DD/MM/YYYY"
-          // isDisabled
-          placeholder='Select Start Date'
-        />
+        <Select error />
         <TimePicker
           name="time-pick"
           value={selectedTime}
-          timeFormat="hh:mm A"
-          // is24Hours
-          onTimeChange={(time)=>setSelectedTime(time)}
-          placeholder='Select Start Time'
+          label="Select Time"
+          description="This is a description"
+          errorMsg="This is an error message"
+          // error={true}
+          onTimeChange={(time) => setSelectedTime(time)}
+          placeholder="Select Start Time"
         />
-        <Button variant="contained" ripple  isLoading>
+        <Button variant="contained" ripple isLoading size='lg' type="submit">
           Submit
         </Button>
       </form>
-      <Modal open={isOpen} title="Test Drawer">
-        {[...Array(999)].map((ele,index) => {
-          return <div key={index}>Aasim</div>
-        })}
-      </Modal>
     </div>
   )
 }

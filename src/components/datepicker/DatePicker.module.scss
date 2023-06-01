@@ -1,86 +1,140 @@
 @import '../../styles/mixin/input';
-@import '../../styles/mixin/scrollbar';
 @import '../../styles/mixin/breakpoints';
 
-
-.datepicker_container {
+.datepicker_wrapper {
   position: relative;
 
-  .datepicker_start {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 2.25rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .datepicker_label{
+    position: relative;
+
+    &_sm{
+      @include label-sm;
+    }
+
+    &_md{
+      @include label-md;
+    }
+
+    &_lg{
+      @include label-lg;
+    }
   }
 
-  .datepicker_end {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 2.25rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .datepicker_description{
+
+    &_sm{
+      @include input-desc-sm;
+    }
+
+    &_md{
+      @include input-desc-md;
+    }
+
+    &_lg{
+      @include input-desc-lg;
+    }
   }
 
-  .datepicker_start,
-  .datepicker_end {
-    .datepicker_icon {
-      width: 100%;
-      height: 100%;
+  .datepicker_container {
+    position: relative;
+
+    .datepicker_start {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 2.25rem;
       display: flex;
       justify-content: center;
       align-items: center;
+      z-index: 11;
+    }
 
-      &__disabled {
-        color: var(--disable-500);
-        cursor: default;
-        pointer-events: none;
+    .datepicker_end {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 2.25rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 11;
+    }
+
+    .datepicker_start,
+    .datepicker_end {
+      .datepicker_icon {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        & > svg {
+          cursor: pointer;
+        }
+
+        &__disabled {
+          color: var(--disable-500);
+          cursor: default;
+          pointer-events: none;
+        }
+      }
+    }
+
+    .datepicker_input {
+      position: absolute !important;
+      top: 0;
+      width: 100% !important;
+      height: 100% !important;
+      outline: none;
+      z-index: 2;
+      all: unset;
+      top: 0;
+      z-index: 11;
+      padding-inline: 0.875rem;
+      box-sizing: border-box;
+
+      &_hidden {
+        display: none;
+      }
+    }
+
+    .datepicker_main {
+      cursor: default;
+      &_sm {
+        @include input-sm;
+        display: flex;
+        align-items: center;
+      }
+
+      &_md {
+        @include input-md;
+        display: flex;
+        align-items: center;
+      }
+
+      &_lg {
+        @include input-lg;
+        display: flex;
+        align-items: center;
       }
     }
   }
 
-  .datepicker_input {
-    position: absolute !important;
-    top: 0;
-    width: 91% !important;
-    height: 100% !important;
-    /* border: none; */
-    outline: none;
-    z-index: 2;
-    all: unset;
-    top: 0;
-    z-index: 11;
-    padding-inline: 0.875rem;
-    // display: none;
-
-    &_hidden{
-      display: none;
-    }
-  }
-  .datepicker_main {
-
-    &_sm {
-      @include input-sm;
-      display: flex;
-      align-items: center;
+  .datepicker_error{
+    
+    &_sm{
+      @include input-error-sm;
     }
 
-    &_md {
-      @include input-md;
-      display: flex;
-      align-items: center;
+    &_md{
+      @include input-error-md;
     }
 
-    &_lg {
-      @include input-lg;
-      display: flex;
-      align-items: center;
+    &_lg{
+      @include input-error-lg;
     }
   }
 }
@@ -89,10 +143,10 @@
   all: unset;
   position: absolute;
   background-color: #fff;
-  width: 92%;
+  width: 100%;
   top: 2.8rem;
   left: 0;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1), -5px 0px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-sm);
   z-index: 99;
   list-style: none;
   overflow: auto;
@@ -101,120 +155,10 @@
   border-radius: 4px;
   font-size: var(--font-md);
   transition: height 0.4s;
+  box-sizing: border-box;
 
 
   @include breakpoint(sm) {
     font-size: var(--font-sm);
-  }
-
-  &__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    &__cm {
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-    }
-
-    &__action {
-      padding: 0.1rem;
-      outline: none;
-      border: 2px solid var(--primary-color-500);
-      border-radius: var(--radius);
-      height: 30px;
-      width: 30px;
-      background-color: transparent;
-      cursor: pointer;
-
-      &:disabled {
-        border-color: var(--disable-300);
-        color: var(--disable-500);
-        cursor: not-allowed;
-      }
-    }
-
-    &__ca {
-      cursor: pointer;
-      width: 24px;
-      height: 24px;
-    }
-  }
-
-  &__container {
-    display: flex;
-
-    &_days {
-      width: calc(100% / 7);
-      text-align: center;
-      padding: 0.5rem;
-      cursor: default;
-      user-select: none;
-
-      &_holiday {
-        color: var(--red-500);
-      }
-    }
-
-    &_dates {
-      width: calc(100% / 7);
-      text-align: center;
-      position: relative;
-      user-select: none;
-      cursor: pointer;
-      transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
-      padding: 0.5rem;
-
-      &:hover {
-        color: #ffffff;
-      }
-
-      &_hover:hover {
-        background-color: var(--primary-color-500);
-      }
-
-      &_holiday {
-        color: var(--red-500);
-
-        &:hover {
-          background-color: var(--red-500);
-        }
-      }
-
-      &_highlight {
-        background-color: var(--primary-color-500);
-        color: #ffffff;
-      }
-    }
-  }
-
-  &__years {
-    @include scrollbar;
-    display: flex;
-    max-height: 252px;
-    overflow-y: scroll;
-    margin-top: 0.5rem;
-    flex-wrap: wrap;
-
-    &_row {
-      display: flex;
-      width: 100%;
-
-      &_col {
-        flex: 1;
-        text-align: center;
-        user-select: none;
-        cursor: pointer;
-        transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
-        padding: 0.5rem;
-
-        &__selected,
-        &:hover {
-          color: #ffffff;
-          background-color: var(--primary-color-500);
-        }
-      }
-    }
   }
 }

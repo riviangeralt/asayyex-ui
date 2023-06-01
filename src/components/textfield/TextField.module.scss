@@ -1,58 +1,108 @@
 @import '../../styles/mixin/input';
 
-.textfield_container {
+.textfield_wrapper{
   position: relative;
+  
+  .textfield_label{
+    position: relative;
 
-  .textfield_start {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 2.25rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    &_sm{
+      @include label-sm;
+    }
+
+    &_md{
+      @include label-md;
+    }
+
+    &_lg{
+      @include label-lg;
+    }
   }
 
-  .textfield_end {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 2.25rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .textfield_description{
+
+    &_sm{
+      @include input-desc-sm;
+    }
+
+    &_md{
+      @include input-desc-md;
+    }
+
+    &_lg{
+      @include input-desc-lg;
+    }
   }
 
-  .textfield_start,
-  .textfield_end {
-    .textfield_icon {
-      width: 100%;
-      height: 100%;
+  .textfield_container {
+    position: relative;
+  
+    .textfield_start {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 2.25rem;
       display: flex;
       justify-content: center;
       align-items: center;
-
-      &__disabled {
-        color: var(--disable-500);
-        cursor: default;
-        pointer-events: none;
+    }
+  
+    .textfield_end {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 2.25rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .textfield_start,
+    .textfield_end {
+      .textfield_icon {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+  
+        &__disabled {
+          color: var(--disable-500);
+          cursor: default;
+          pointer-events: none;
+        }
+      }
+    }
+  
+    .textfield_main {
+      &_sm {
+        @include input-sm;
+      }
+  
+      &_md {
+        @include input-md;
+      }
+  
+      &_lg {
+        @include input-lg;
       }
     }
   }
 
-  .textfield_main {
-    &_sm {
-      @include input-sm;
+  .textfield_error{
+    
+    &_sm{
+      @include input-error-sm;
     }
 
-    &_md {
-      @include input-md;
+    &_md{
+      @include input-error-md;
     }
 
-    &_lg {
-      @include input-lg;
+    &_lg{
+      @include input-error-lg;
     }
   }
 }

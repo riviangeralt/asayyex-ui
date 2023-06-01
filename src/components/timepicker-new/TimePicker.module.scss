@@ -1,135 +1,141 @@
 @import '../../styles/mixin/input';
 
-.timepicker_container {
+.timepicker_wrapper {
   position: relative;
 
-  .timepicker_start {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 2.25rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .timepicker_label{
+    position: relative;
+
+    &_sm{
+      @include label-sm;
+    }
+
+    &_md{
+      @include label-md;
+    }
+
+    &_lg{
+      @include label-lg;
+    }
   }
 
-  .timepicker_end {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 2.25rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .timepicker_description{
+
+    &_sm{
+      @include input-desc-sm;
+    }
+
+    &_md{
+      @include input-desc-md;
+    }
+
+    &_lg{
+      @include input-desc-lg;
+    }
   }
 
-  .timepicker_start,
-  .timepicker_end {
-    .timepicker_icon {
-      width: 100%;
-      height: 100%;
+  .timepicker_container {
+    position: relative;
+
+    .timepicker_start {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 2.25rem;
       display: flex;
       justify-content: center;
       align-items: center;
-
-      &__disabled {
-        color: var(--disable-500);
-        cursor: default;
-        pointer-events: none;
-      }
+      z-index: 11;
     }
-  }
 
-  .timepicker_input {
-    position: absolute !important;
-    top: 0;
-    width: 91% !important;
-    height: 100% !important;
-    /* border: none; */
-    outline: none;
-    z-index: 2;
-    all: unset;
-    top: 0;
-    z-index: 11;
-    padding-inline: 0.875rem;
-    // display: none;
-
-    &_hidden {
-      display: none;
-    }
-  }
-
-  .timepicker_main {
-    &_sm {
-      @include input-sm;
+    .timepicker_end {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 2.25rem;
       display: flex;
+      justify-content: center;
       align-items: center;
+      z-index: 11;
     }
 
-    &_md {
-      @include input-md;
-      display: flex;
-      align-items: center;
-    }
-
-    &_lg {
-      @include input-lg;
-      display: flex;
-      align-items: center;
-    }
-  }
-}
-
-.timepicker_option {
-  all: unset;
-  position: absolute;
-  background-color: #fff;
-  width: 92%;
-  top: 2.8rem;
-  left: 0;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1), -5px 0px 10px rgba(0, 0, 0, 0.1);
-  z-index: 99;
-  list-style: none;
-  overflow: auto;
-  padding: 0.75rem;
-  max-height: fit-content;
-  border-radius: 4px;
-  font-size: var(--font-md);
-  transition: height 0.4s;
-
-  &__header {
-    display: flex;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    font-size: 1.25rem;
-    line-height: 1.75rem;
-    font-weight: 700;
-
-    &_hour,
-    &_minute,
-    &_format {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-
-      span {
-        cursor: pointer;
+    .timepicker_start,
+    .timepicker_end {
+      .timepicker_icon {
         width: 100%;
         height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        & > svg {
+          cursor: pointer;
+        }
+
+        &__disabled {
+          color: var(--disable-500);
+          cursor: default;
+          pointer-events: none;
+        }
+      }
+    }
+
+    .timepicker_input {
+      position: absolute !important;
+      top: 0;
+      width: 100% !important;
+      height: 100% !important;
+      outline: none;
+      z-index: 2;
+      all: unset;
+      top: 0;
+      z-index: 11;
+      padding-inline: 0.875rem;
+      box-sizing: border-box;
+
+      &_hidden {
+        display: none;
+      }
+    }
+
+    .timepicker_main {
+      cursor: default;
+      &_sm {
+        @include input-sm;
+        display: flex;
+        align-items: center;
+      }
+
+      &_md {
+        @include input-md;
+        display: flex;
+        align-items: center;
+      }
+
+      &_lg {
+        @include input-lg;
+        display: flex;
+        align-items: center;
       }
     }
   }
 
-  &__footer {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 1rem;
+  
+  .timepicker_error{
+    
+    &_sm{
+      @include input-error-sm;
+    }
+
+    &_md{
+      @include input-error-md;
+    }
+
+    &_lg{
+      @include input-error-lg;
+    }
   }
+
 }

@@ -1,5 +1,6 @@
 import React from 'react'
-import { componentWithRipple, mergeClassNames } from 'src'
+import { mergeClassNames } from 'src/utils'
+import { componentWithRipple } from 'src/hoc'
 import classes from './Chip.module.scss'
 
 type ChipProps = {

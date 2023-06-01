@@ -1,0 +1,33 @@
+@import "../../../styles/mixin/scrollbar";
+
+.datepicker_calendar {
+
+    &__years {
+        @include scrollbar;
+        display: flex;
+        max-height: 252px;
+        overflow-y: scroll;
+        margin-top: 0.5rem;
+        flex-wrap: wrap;
+
+        &_row {
+            display: flex;
+            width: 100%;
+
+            &_col {
+                flex: 1;
+                text-align: center;
+                user-select: none;
+                cursor: pointer;
+                transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+                padding: 0.5rem;
+
+                &__selected,
+                &:hover {
+                    color: #ffffff;
+                    background-color: var(--primary-color-500);
+                }
+            }
+        }
+    }
+}

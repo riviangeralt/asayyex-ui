@@ -1,1 +1,1 @@
-export { mergeClassNames } from './utils'
+export * from './utils'

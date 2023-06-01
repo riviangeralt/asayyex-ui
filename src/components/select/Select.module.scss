@@ -1,88 +1,141 @@
 @import '../../styles/mixin/input';
 @import '../../styles/mixin/scrollbar';
 
-.select_container {
+.select_wrapper{
   position: relative;
 
-  .select_start {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 2.25rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 99;
+  .select_label{
+    position: relative;
+
+    &_sm{
+      @include label-sm;
+    }
+
+    &_md{
+      @include label-md;
+    }
+
+    &_lg{
+      @include label-lg;
+    }
   }
 
-  .select_end {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 2.25rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .select_description{
+
+    &_sm{
+      @include input-desc-sm;
+    }
+
+    &_md{
+      @include input-desc-md;
+    }
+
+    &_lg{
+      @include input-desc-lg;
+    }
   }
 
-  .select_start,
-  .select_end {
-    .select_icon {
-      width: 100%;
-      height: 100%;
+  .select_container {
+    position: relative;
+  
+    .select_start {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 2.25rem;
       display: flex;
       justify-content: center;
       align-items: center;
-      cursor: pointer;
+      z-index: 11;
+    }
+  
+    .select_end {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 2.25rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 11;
+    }
+  
+    .select_start,
+    .select_end {
+      .select_icon {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-      &__disabled {
-        color: var(--disable-500);
-        cursor: default;
-        pointer-events: none;
+        & > svg {
+          cursor: pointer;
+        }
+        
+        &__disabled {
+          color: var(--disable-500);
+          cursor: default;
+          pointer-events: none;
+        }
+      }
+    }
+    .select_input {
+      position: absolute !important;
+      top: 0;
+      width: 100% !important;
+      height: 100% !important;
+      outline: none;
+      z-index: 2;
+      all: unset;
+      top: 0;
+      z-index: 11;
+      padding-inline: 0.875rem;
+      box-sizing: border-box;
+  
+      &_hidden{
+        display: none;
+      }
+    }
+  
+    .select_main {
+      cursor: default;
+      user-select: none;
+  
+      &_sm {
+        @include input-sm;
+        display: flex;
+        align-items: center;
+      }
+  
+      &_md {
+        @include input-md;
+        display: flex;
+        align-items: center;
+      }
+  
+      &_lg {
+        @include input-lg;
+        display: flex;
+        align-items: center;
       }
     }
   }
-  .select_input {
-    position: absolute !important;
-    top: 0;
-    width: 91% !important;
-    height: 100% !important;
-    /* border: none; */
-    outline: none;
-    z-index: 2;
-    all: unset;
-    top: 0;
-    z-index: 11;
-    padding-inline: 0.875rem;
-    // display: none;
 
-    &_hidden{
-      display: none;
-    }
-  }
-
-  .select_main {
-    cursor: default;
-    user-select: none;
-
-    &_sm {
-      @include input-sm;
-      display: flex;
-      align-items: center;
+  .select_error{
+    
+    &_sm{
+      @include input-error-sm;
     }
 
-    &_md {
-      @include input-md;
-      display: flex;
-      align-items: center;
+    &_md{
+      @include input-error-md;
     }
 
-    &_lg {
-      @include input-lg;
-      display: flex;
-      align-items: center;
+    &_lg{
+      @include input-error-lg;
     }
   }
 }
@@ -95,10 +148,10 @@
   width: 100%;
   top: 2.8rem;
   left: 0;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1), -5px 0px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-sm);
   z-index: 99;
   list-style: none;
-  overflow-y: scroll;
+  overflow-y: auto;
   padding: 0.5rem 0;
   max-height: 200px;
   border-radius: 4px;

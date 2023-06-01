@@ -1,5 +1,3 @@
-@import '../../styles/mixin/variables';
-
 .checkbox_container {
     display: flex;
     gap: 0.5rem;
@@ -12,7 +10,7 @@
     }
 
     .checkbox {
-        border: #{$border} solid #{$init-color};
+        border: var(--border-w-sm) solid var(--disable-50);
         cursor: pointer;
         border-radius: var(--radius);
         position: relative;

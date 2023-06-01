@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { mergeClassNames } from 'src'
+import { mergeClassNames } from 'src/utils'
 
 import classes from './Switch.module.scss'
 
