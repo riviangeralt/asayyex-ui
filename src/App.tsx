@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { Button, Select, TimePicker } from './components'
+import { Button, Modal } from './components'
 
 const list = [
   { value: 'AL', label: 'Alabama' },
@@ -71,34 +71,11 @@ function App() {
   const [selectedTime, setSelectedTime] = useState<string | undefined>(undefined)
   return (
     <div className="p-2 h-screen flex gap-4 items-start flex-wrap">
-      <form
-        onSubmit={(event: React.FormEvent<HTMLFormElement>) => {
-          event.preventDefault()
-          const data = new FormData(event.target as HTMLFormElement)
-          // console.log(event.target, data)
-          const parsed = Object.fromEntries(data)
-          console.log(parsed, '<<<')
-          // setIsOpen(true)
-        }}
-        style={{
-          width: 300,
-        }}
-      >
-        <Select error />
-        <TimePicker
-          name="time-pick"
-          value={selectedTime}
-          label="Select Time"
-          description="This is a description"
-          errorMsg="This is an error message"
-          // error={true}
-          onTimeChange={(time) => setSelectedTime(time)}
-          placeholder="Select Start Time"
-        />
-        <Button variant="contained" ripple isLoading size='lg' type="submit">
-          Submit
-        </Button>
-      </form>
+      <Modal open={isOpen} onClose={() => setIsOpen(false)} verticalAlign='center'></Modal>
+
+      <Button variant="contained" ripple onClick={() => setIsOpen(true)}>
+        Submit
+      </Button>
     </div>
   )
 }

@@ -2,7 +2,7 @@ import { mergeClassNames } from 'src/utils'
 
 import classes from './Spinner.module.scss'
 
-interface SpinnerProps {
+type SpinnerProps = {
   size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl'
   color?: 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'white'
 }

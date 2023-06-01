@@ -1,13 +1,15 @@
-export { default as Accordion } from './accordion/Accordion'
-export { default as Button } from './button/Button'
-export { default as Checkbox } from './checkbox/Checkbox'
-export { default as Chip } from './chip/Chip'
-export { default as DatePicker } from './datepicker/DatePicker'
-export { default as Drawer } from './drawer/Drawer'
-export { default as Modal } from './modal/Modal'
-export { default as Select } from './select/Select'
-export { default as Spinner } from './spinner/Spinner'
-export { default as Switch } from './switch/Switch'
-export { default as TextField } from './textfield/TextField'
-export { default as TimePicker } from './timepicker-new/TimePicker'
-export { default as UIProvider } from './provider/UIProvider'
+import { lazy } from 'react'
+
+export const Accordion = lazy(() => import('./accordion/Accordion'))
+export const Button = lazy(() => import('./button/Button'))
+export const Checkbox = lazy(() => import('./checkbox/Checkbox'))
+export const Chip = lazy(() => import('./chip/Chip'))
+export const DatePicker = lazy(() => import('./datepicker/DatePicker'))
+export const Drawer = lazy(() => import('./drawer/Drawer'))
+export const Modal = lazy(() => import('./modal/Modal'))
+export const Select = lazy(() => import('./select/Select'))
+export const Spinner = lazy(() => import('./spinner/Spinner'))
+export const Switch = lazy(() => import('./switch/Switch'))
+export const TextField = lazy(() => import('./textfield/TextField'))
+export const TimePicker = lazy(() => import('./timepicker-new/TimePicker'))
+export const UIProvider = lazy(() => import('./provider/UIProvider'))

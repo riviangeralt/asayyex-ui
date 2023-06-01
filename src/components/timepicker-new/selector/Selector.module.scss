@@ -3,7 +3,7 @@
     all: unset;
     position: absolute;
     background-color: #fff;
-    width: 92%;
+    width: 100%;
     top: 2.8rem;
     left: 0;
     box-shadow: var(--shadow-sm);
@@ -15,6 +15,7 @@
     border-radius: 4px;
     font-size: var(--font-md);
     transition: height 0.4s;
+    box-sizing: border-box;
   
     .timepicker_content {
       display: flex;

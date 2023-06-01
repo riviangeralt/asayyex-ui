@@ -92,7 +92,7 @@ const Drawer = (props: DrawerProps & React.ComponentProps<'div'>) => {
               {footer && <div className={mergeClassNames(classes.drawer_footer)}>{footer}</div>}
             </div>
           </div>,
-          document.getElementById('rtc-portal') as HTMLElement,
+          document.body as HTMLElement,
         )}
     </>
   )
